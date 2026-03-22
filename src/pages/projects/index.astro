@@ -1,0 +1,83 @@
+---
+import { PROJECTS_CONFIG } from '~/config'
+import Layout from '~/layouts/Layout.astro'
+import SectionDivider from '~/components/base/SectionDivider.astro'
+import { Image } from 'astro:assets'
+import { getAllProjects } from '~/lib/data'
+import PageTitle from '~/components/base/PageTitle.astro'
+
+const { title, description, introduce } = PROJECTS_CONFIG
+const projects = await getAllProjects()
+---
+
+<Layout {title} {description}>
+  <div class="relative z-[1] py-8 pb-10">
+    <div class="px-6 sm:px-8">
+      <PageTitle {title} {introduce} />
+    </div>
+    <div class="grid grid-cols-1 fade-up">
+      {
+        projects.map((project, index) => {
+          return (
+            <div>
+              <div class="group relative hover:bg-muted/30 dark:hover:bg-muted/30 transition-colors duration-300 px-6 sm:px-8 py-6">
+                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                  {/* Text content */}
+                  <div class="flex-1 min-w-0">
+                    <a
+                      href={project.data.website || project.data.githubUrl || '#'}
+                      target="_blank"
+                      class="inline-flex items-center justify-between font-semibold text-lg/relaxed"
+                    >
+                      {project.data.name}
+                    </a>
+                    <p class="text-muted-foreground mb-3">{project.data.description}</p>
+                    <div class="flex items-center gap-5 text-zinc-500 text-sm z-10">
+                      {project.data.website && (
+                        <a
+                          href={project.data.website}
+                          target="_blank"
+                          class="hover:text-zinc-600 dark:hover:text-zinc-100 flex items-center gap-1"
+                        >
+                          <span class="icon-[mdi--web] size-4" />
+                          <span>Website</span>
+                        </a>
+                      )}
+                      {project.data.githubUrl && (
+                        <a
+                          href={project.data.githubUrl}
+                          target="_blank"
+                          class="hover:text-zinc-600 dark:hover:text-zinc-100 flex items-center gap-1"
+                        >
+                          <span class="icon-[mdi--github] size-4" />
+                          <span>GitHub</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                  {/* Screenshot */}
+                  {project.data.icon && (
+                    <div class="shrink-0 sm:w-48 md:w-56">
+                      <a href={project.data.website || project.data.githubUrl || '#'} target="_blank">
+                        <Image
+                          src={project.data.icon}
+                          alt={`${project.data.name} screenshot`}
+                          width={224}
+                          height={140}
+                          class="rounded-lg border border-border/50 object-cover w-full shadow-sm group-hover:shadow-md transition-shadow duration-300"
+                          densities={[1, 2]}
+                          loading="lazy"
+                        />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <SectionDivider className={index == projects.length - 1 ? 'hidden' : ''} />
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+</Layout>

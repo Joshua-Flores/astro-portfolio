@@ -1,18 +1,6 @@
-# netlify.toml
-
 [build]
-  command = "hugo --gc --minify -b $URL"
-  publish = "public"
+  command = "pnpm install && pnpm build"
+  publish = "dist"
 
 [build.environment]
-  NODE_ENV = "production"
-  GO_VERSION = "1.16"
-  TZ = "UTC"  # Set to preferred timezone
-
-[context.production.environment]
-  HUGO_VERSION = "0.104.1"
-  HUGO_ENV = "production"
-  URL = "https://relaxed-hotteok-013e84.netlify.app"
-
-[context.deploy-preview.environment]
-  HUGO_VERSION = "0.104.1"
+  NODE_VERSION = "20"
