@@ -64,7 +64,7 @@ html {
   }
 }
 
-/* 当根元素带有 .dark 类时，启用深色 UA 颜色方案 */
+/* When root element has .dark class, enable dark UA color scheme */
 .dark html {
   color-scheme: dark;
 }

@@ -11,7 +11,7 @@ interface Props {
 
 const { class: className, post, posts } = Astro.props
 
-// 计算文章在第几页
+// Calculate which page the post is on
 const postIndex = posts.findIndex((p) => p.id === post.id)
 const pageSize = POSTS_CONFIG.postPageConfig.size
 const pageNumber = Math.floor(postIndex / pageSize) + 1

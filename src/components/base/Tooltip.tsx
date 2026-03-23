@@ -2,7 +2,7 @@ import { useRef, useState, createContext, useContext } from 'react'
 import type { ReactNode } from 'react'
 import { useFloating, autoUpdate, offset, shift, arrow, FloatingPortal, flip } from '@floating-ui/react'
 
-// 单例 Tooltip 上下文
+// Singleton Tooltip context
 interface TooltipContextType {
   showTooltip: (element: HTMLElement, content: string) => void
   hideTooltip: () => void
@@ -10,7 +10,7 @@ interface TooltipContextType {
 
 const TooltipContext = createContext<TooltipContextType | null>(null)
 
-// 单例 Tooltip Provider
+// Singleton Tooltip Provider
 export function TooltipProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
   const [content, setContent] = useState('')
@@ -82,7 +82,7 @@ export function TooltipProvider({ children }: { children: ReactNode }) {
   )
 }
 
-// 单例 Tooltip 组件
+// Singleton Tooltip component
 export default function Tooltip({
   content,
   children,

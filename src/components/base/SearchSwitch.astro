@@ -41,10 +41,10 @@
   const searchResults = document.getElementById('search-results')
   const exactToggle = document.getElementById('search-exact') as HTMLButtonElement | null
 
-  // 并发控制：用于丢弃过期的搜索结果
+  // Concurrency control: used to discard stale search results
   let searchReqId = 0
 
-  // 精确模式状态（持久化）
+  // Exact mode state (persisted)
   let exactMode = false
   try { exactMode = localStorage.getItem('search-exact') === '1' } catch {}
   const updateExactUI = () => {
@@ -63,23 +63,23 @@
     exactMode = !exactMode
     try { localStorage.setItem('search-exact', exactMode ? '1' : '0') } catch {}
     updateExactUI()
-    // 模式变更后立刻重新检索
+    // Re-search immediately after mode change
     searchInput?.dispatchEvent(new Event('input'))
   })
 
-  // 声明 pagefind 类型
+  // Declare pagefind type
   declare const pagefind: any
 
-  // 打开搜索面板
+  // Open search panel
   const openSearch = () => {
     searchMask?.classList.remove('hidden')
     searchMask?.offsetHeight
     searchMask?.classList.remove('opacity-0')
     searchInput?.focus()
-    // 移除了 document.body.style.overflow = 'hidden'
+    // Removed document.body.style.overflow = 'hidden'
   }
 
-  // 关闭搜索面板
+  // Close search panel
   const closeSearch = () => {
     searchMask?.classList.add('opacity-0')
     if (searchInput) searchInput.value = ''
@@ -96,19 +96,19 @@
       searchMask?.classList.add('hidden')
   }
 
-  // 点击开关
+  // Toggle click
   searchSwitch?.addEventListener('click', openSearch)
 
-  // 点击遮罩层关闭
+  // Click overlay to close
   searchMask?.addEventListener('click', (e) => {
     if (e.target === searchMask) closeSearch()
   })
 
-  // 快捷键支持
+  // Keyboard shortcut support
   document.addEventListener('keydown', (e) => {
-    // ESC关闭
+    // ESC to close
     if (e.key === 'Escape') closeSearch()
-    // Ctrl+K 切换
+    // Ctrl+K toggle
     if (e.ctrlKey && e.key.toLowerCase() === 'k') {
       e.preventDefault()
       if (searchMask?.classList.contains('hidden')) {
@@ -143,10 +143,10 @@
       const pagefindQuery = exactMode ? `"${q}"` : q
       const search = await pagefind.debouncedSearch(pagefindQuery)
 
-      // 如果期间产生了新的请求，丢弃本次结果，避免重复提示或错位渲染
+      // If a new request was made in the meantime, discard this result to avoid duplicates or misaligned rendering
       if (reqId !== searchReqId || searchInput?.value.trim() !== q) return
 
-      // 添加结果长度判断
+      // Check results length
       if (!search?.results || search.results.length === 0) {
         const noResults = document.createElement('div')
         noResults.className = 'search-results-item py-8'
@@ -163,7 +163,7 @@
       if(search?.results){
         for (const result of search?.results) {
         const data = await result.data()
-        // 显示主结果
+        // Show main result
         const resultItem = document.createElement('a')
         resultItem.href = data.url
         resultItem.className = 'search-results-item'
@@ -174,14 +174,14 @@
         resultItem.addEventListener('click', closeSearchIn)
         searchResults?.appendChild(resultItem)
 
-        // 显示子结果（如果有）
+        // Show sub-results (if any)
         if (data.sub_results) {
           for (const subResult of data.sub_results) {
             if (subResult.excerpt === data.excerpt) continue;
 
             const cleanTitle = subResult.title.replace(/\s*[Hh][1-6]$/g, '');
 
-            if (!cleanTitle) continue; // 跳过空标题
+            if (!cleanTitle) continue; // Skip empty titles
 
             const subItem = document.createElement('a')
             subItem.href = subResult.url

@@ -1,15 +1,15 @@
 import type { ImageMetadata } from 'astro'
 
 /**
- * 站点基础信息类型 / Site basic information type
- * @description 包含站点标题和描述 / Contains site title and description
- * @property {string} title - 站点标题 / Site title
- * @property {string} base - 站点基础路径 / Site base path
- * @property {string} description - 站点描述 / Site description
- * @property {string} author - 作者名称 / Author name
- * @property {string} website - 网站地址 / Website address
- * @property {string} ogImage - OGP 图片地址 / OGP image address
- * @property {boolean} transition - 是否启用过渡动画 / Whether to enable transition animation
+ * Site basic information type
+ * @description Contains site title and description
+ * @property {string} title - Site title
+ * @property {string} base - Site base path
+ * @property {string} description - Site description
+ * @property {string} author - Author name
+ * @property {string} website - Website address
+ * @property {string} ogImage - OGP image address
+ * @property {boolean} transition - Whether to enable transition animation
  */
 export type Site = {
   title: string
@@ -23,23 +23,23 @@ export type Site = {
 }
 
 /**
- * 文章封面图布局类型 / Cover image layout type
- * @description 可选值为 'left' 和 'right' / Possible values: 'left' and 'right'
+ * Cover image layout type
+ * @description Possible values: 'left' and 'right'
  */
 export type CoverLayout = 'left' | 'right'
 
 /**
- * 文章卡片类型 / PostCardType
- * @description 可选值为 'compact' 、'image' 和 'time-line' / Possible values: 'compact', 'image' and 'timeLine'
+ * PostCardType
+ * @description Possible values: 'compact', 'image' and 'timeLine'
  */
 export type PostCardType = 'compact' | 'image' | 'time-line' | 'minimal' | 'cover'
 
 /**
- * 文章卡片页面基础配置接口 / Post card page configuration interface
- * @description 用于配置文章卡片页面的显示方式 / Used to configure how post cards are displayed on pages
- * @property {PostCardType} type - 卡片展示类型 / Card display type
- * @property {number} size - 每页显示数量 / Number of items per page
- * @property {CoverLayout} coverLayout - 特色图片布局方式 / Cover image layout position
+ * Post card page configuration interface
+ * @description Used to configure how post cards are displayed on pages
+ * @property {PostCardType} type - Card display type
+ * @property {number} size - Number of items per page
+ * @property {CoverLayout} coverLayout - Cover image layout position
  */
 export interface PostCardPageConfig {
   type: PostCardType
@@ -50,24 +50,24 @@ export interface PostCardPageConfig {
 export type PostType = 'metaOnly' | 'coverSplit' | 'coverTop'
 
 /**
- * 文章配置接口 / Post configuration interface
- * @description 用于配置博客文章相关的全局设置 / Used to configure global settings for blog posts
- * @property {string} title - 文章标题 / Post title
- * @property {string} description - 文章描述 / Post description
- * @property {string} introduce - 文章介绍 / Post introduce
- * @property {string} author - 作者名称 / Author name
- * @property {PostCardPageConfig} homePageConfig - 首页文章展示配置 / Home page posts display configuration
- * @property {PostCardPageConfig} postPageConfig - 文章列表页展示配置 / Posts list page display configuration
- * @property {PostCardPageConfig} tagsPageConfig - 标签页文章展示配置 / Post display configuration for tags page
- * @property {boolean} ogImageUseCover - 是否使用文章封面图作为OGP图片 / Whether to use the article cover image as the OGP image
- * @property {boolean} imageDarkenInDark - 是否在暗黑模式下对图片进行暗化处理 / Whether to darken images in dark mode
- * @property {string} readMoreText - "阅读更多"按钮文本 / "Read more" button text
- * @property {string} prevPageText - 上一页按钮文本 / Previous page button text
- * @property {string} nextPageText - 下一页按钮文本 / Next page button text
- * @property {string} tocText - 目录文本 / Table of contents text
- * @property {string} backToPostsText - 返回文章列表按钮文本 / Back to posts list button text
- * @property {string} nextPostText - 下一篇文章按钮文本 / Next post button text
- * @property {string} prevPostText - 上一篇文章按钮文本 / Previous post button text
+ * Post configuration interface
+ * @description Used to configure global settings for blog posts
+ * @property {string} title - Post title
+ * @property {string} description - Post description
+ * @property {string} introduce - Post introduce
+ * @property {string} author - Author name
+ * @property {PostCardPageConfig} homePageConfig - Home page posts display configuration
+ * @property {PostCardPageConfig} postPageConfig - Posts list page display configuration
+ * @property {PostCardPageConfig} tagsPageConfig - Post display configuration for tags page
+ * @property {boolean} ogImageUseCover - Whether to use the article cover image as the OGP image
+ * @property {boolean} imageDarkenInDark - Whether to darken images in dark mode
+ * @property {string} readMoreText - "Read more" button text
+ * @property {string} prevPageText - Previous page button text
+ * @property {string} nextPageText - Next page button text
+ * @property {string} tocText - Table of contents text
+ * @property {string} backToPostsText - Back to posts list button text
+ * @property {string} nextPostText - Next post button text
+ * @property {string} prevPostText - Previous post button text
  */
 export interface PostConfig {
   title: string
@@ -92,10 +92,10 @@ export interface PostConfig {
 }
 
 /**
- * 标签配置接口 / Tags configuration interface
- * @property {string} title - 标签页标题 / Tags page title
- * @property {string} description - 标签页描述 / Tags page description
- * @property {string} introduce - 标签页介绍 / Tags page introduce
+ * Tags configuration interface
+ * @property {string} title - Tags page title
+ * @property {string} description - Tags page description
+ * @property {string} introduce - Tags page introduce
  */
 export interface TagsConfig {
   title: string
@@ -115,13 +115,13 @@ export interface SkillData {
 }
 
 /**
- * SkillsShowcase 配置接口 / SkillsShowcase configuration type
- * @property {boolean} SKILLS_ENABLED  - 是否启用SkillsShowcase功能 / Whether to enable SkillsShowcase features
- * @property {Object} SKILLS_DATA - 技能展示数据 / Skills showcase data
- * @property {string} SKILLS_DATA.direction - 技能展示方向 / Skills showcase direction
- * @property {Object} SKILLS_DATA.skills - 技能展示数据 / Skills showcase data
- * @property {string} SKILLS_DATA.skills.icon - 技能图标 / Skills icon
- * @property {string} SKILLS_DATA.skills.name - 技能名称 / Skills name
+ * SkillsShowcase configuration type
+ * @property {boolean} SKILLS_ENABLED  - Whether to enable SkillsShowcase features
+ * @property {Object} SKILLS_DATA - Skills showcase data
+ * @property {string} SKILLS_DATA.direction - Skills showcase direction
+ * @property {Object} SKILLS_DATA.skills - Skills showcase data
+ * @property {string} SKILLS_DATA.skills.icon - Skills icon
+ * @property {string} SKILLS_DATA.skills.name - Skills name
  */
 export interface SkillsShowcaseConfig {
   SKILLS_ENABLED: boolean
@@ -129,10 +129,10 @@ export interface SkillsShowcaseConfig {
 }
 
 /**
- * GitHub配置类型 / GitHub configuration type
- * @property {boolean} ENABLED - 是否启用GitHub功能 / Whether to enable GitHub features
- * @property {string} GITHUB_USERNAME - GITHUB用户名 / GitHub username
- * @property {boolean} TOOLTIP_ENABLED - 是否开启Tooltip功能 / Whether to enable Github Tooltip features
+ * GitHub configuration type
+ * @property {boolean} ENABLED - Whether to enable GitHub features
+ * @property {string} GITHUB_USERNAME - GitHub username
+ * @property {boolean} TOOLTIP_ENABLED - Whether to enable Github Tooltip features
  */
 export type GithubConfig = {
   ENABLED: boolean
@@ -141,9 +141,9 @@ export type GithubConfig = {
 }
 
 /**
- * 链接类型 / Link type
- * @property {string} name - 链接显示名称 / Link display name
- * @property {string} url - 链接URL / Link URL
+ * Link type
+ * @property {string} name - Link display name
+ * @property {string} url - Link URL
  */
 export type Link = {
   name: string
@@ -151,11 +151,11 @@ export type Link = {
 }
 
 /**
- * 社交媒体链接类型 / Social media link type
- * @property {string} name - 平台名称 / Platform name
- * @property {string} url - 个人主页URL / Profile URL
- * @property {string} icon - 图标类名 / Icon class name
- * @property {number} [count] - 可选计数 / Optional count
+ * Social media link type
+ * @property {string} name - Platform name
+ * @property {string} url - Profile URL
+ * @property {string} icon - Icon class name
+ * @property {number} [count] - Optional count
  */
 export type SocialLink = {
   name: string
@@ -165,10 +165,10 @@ export type SocialLink = {
 }
 
 /**
- * 项目配置接口 / Project configuration interface
- * @property {string} title - 项目标题 / Project title
- * @property {string} description - 项目描述 / Project description
- * @property {string} introduce - 项目介绍 / Project introduce
+ * Project configuration interface
+ * @property {string} title - Project title
+ * @property {string} description - Project description
+ * @property {string} introduce - Project introduce
  */
 export interface ProjectConfig {
   title: string
@@ -176,7 +176,7 @@ export interface ProjectConfig {
   introduce: string
 }
 
-// 项目图标类型 / Project icon type
+// Project icon type
 export type IconType = 'icon' | 'image'
 
 export interface GitalkConfig {

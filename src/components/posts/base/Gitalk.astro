@@ -57,16 +57,16 @@ const { id, title } = Astro.props
     const container = document.getElementById('gitalk-container')
     if (!container) return
 
-    // 清理之前的观察器
+    // Clean up previous observer
     cleanup()
 
-    // 检查是否已经在可视区域内
+    // Check if already in viewport
     if (isElementInViewport(container)) {
       initGitalk()
       return
     }
 
-    // 设置观察器监听
+    // Set up observer
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -92,14 +92,14 @@ const { id, title } = Astro.props
     }
   }
 
-  // 重置函数，在页面切换时调用
+  // Reset function, called on page transitions
   function resetAndInitialize() {
-    isInitialized = false // 关键：重置初始化状态
+    isInitialized = false // Important: reset initialization state
     cleanup()
     setupObserver()
   }
 
-  // 初始设置
+  // Initial setup
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupObserver)
   } else {

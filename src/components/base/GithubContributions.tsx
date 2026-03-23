@@ -28,7 +28,7 @@ interface Props {
   tooltipEnabled: boolean
 }
 
-// ERROR图案配置
+// ERROR pattern configuration
 const ERROR_PATTERN = [
   [1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1],
   [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
@@ -37,13 +37,13 @@ const ERROR_PATTERN = [
   [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
 ] as const
 
-// 生成ERROR贡献数据
+// Generate ERROR contribution data
 function generateErrorContributions(): Response {
   const contributions = Array.from({ length: 371 }, (_, index): Contribution => {
     const weekIndex = Math.floor(index / 7)
     const dayIndex = index % 7
 
-    // 计算居中位置
+    // Calculate center position
     const patternStartWeek = Math.floor((53 - 19) / 2)
     const patternStartRow = Math.floor((7 - 5) / 2)
     const relativeWeek = weekIndex - patternStartWeek
@@ -51,7 +51,7 @@ function generateErrorContributions(): Response {
 
     let count = 0
     if (relativeWeek >= 0 && relativeWeek < 19 && relativeRow >= 0 && relativeRow < 5) {
-      count = ERROR_PATTERN[relativeRow]?.[relativeWeek] === 1 ? 10 : 0 // 10表示最深色
+      count = ERROR_PATTERN[relativeRow]?.[relativeWeek] === 1 ? 10 : 0 // 10 = darkest color
     }
 
     return {
@@ -69,7 +69,7 @@ function generateErrorContributions(): Response {
   }
 }
 
-// 生成默认占位数据
+// Generate default placeholder data
 function generatePlaceholderContributions(): Response {
   const contributions = Array.from(
     { length: 371 },
@@ -124,7 +124,7 @@ export default function GithubContributions({ username, tooltipEnabled }: Props)
 
   useEffect(fetchData, [fetchData])
 
-  // 将贡献数据按周分组
+  // Group contribution data by week
   const weeks =
     data?.contributions.reduce<Contribution[][]>((acc, day, index) => {
       const weekIndex = Math.floor(index / 7)
