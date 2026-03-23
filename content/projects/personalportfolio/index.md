@@ -3,7 +3,7 @@ title: "Personal Portfolio"
 date: 2023-04-01
 draft: false
 slug: "personal-portfolio"
-tags: ["Hugo", "Tailwind", "Firebase"]
+tags: ["Hugo", "Tailwind"]
 ---
 
 ## Background
@@ -35,7 +35,6 @@ After a few weekends of working on this here and there, I had a new portfolio si
 Here's a short list of improvements:
 
 - Easy styling with Tailwind
-- Anonymous likes and page views with Firebase
 - 30 second site build times
 - Markdown based blog posts which are very simple to add
 

@@ -2,7 +2,7 @@
 title: "Personal Portfolio"
 description: "The story behind building this portfolio site — from Gatsby to Hugo to Astro."
 pubDate: 2023-04-01
-tags: ["Hugo", "Tailwind", "Firebase", "project"]
+tags: ["Hugo", "Tailwind", "project"]
 cover: "../../../assets/projects/personalportfolio.png"
 ---
 
@@ -35,7 +35,6 @@ After a few weekends of working on this here and there, I had a new portfolio si
 Here's a short list of improvements:
 
 - Easy styling with Tailwind
-- Anonymous likes and page views with Firebase
 - 30 second site build times
 - Markdown based blog posts which are very simple to add
 

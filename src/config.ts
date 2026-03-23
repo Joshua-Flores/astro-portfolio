@@ -3,7 +3,6 @@ import type {
   CommentConfig,
   GithubConfig,
   Link,
-  PhotosConfig,
   PostConfig,
   ProjectConfig,
   Site,
@@ -264,12 +263,6 @@ export const PROJECTS_CONFIG: ProjectConfig = {
   title: 'Projects',
   description: 'A collection of my projects.',
   introduce: 'Here are some of the projects I have worked on.',
-}
-
-export const PHOTOS_CONFIG: PhotosConfig = {
-  title: 'Photos',
-  description: 'Here I will record some photos taken in daily life.',
-  introduce: 'Here I will record some photos taken in daily life.',
 }
 
 export const ANALYTICS_CONFIG: AnalyticsConfig = {

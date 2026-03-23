@@ -12,7 +12,6 @@ import { getAllPosts } from '~/lib/data'
 import SectionDivider from '~/components/base/SectionDivider.astro'
 import Comment from '~/components/posts/base/Comment.astro'
 import License from '~/components/posts/base/License.astro'
-import FirebaseEngagement from '~/components/posts/base/FirebaseEngagement.tsx'
 
 export async function getStaticPaths() {
   const sortedPosts = await getAllPosts()
@@ -64,9 +63,6 @@ const PostLayout = layoutMap[layoutKey]
         )
       }
     </PostLayout>
-    <div class="px-6 sm:px-8 py-4">
-      <FirebaseEngagement postId={post.id} client:only="react" />
-    </div>
     {
       posts.length > 1 && (
         <div class="px-6 sm:px-8 pb-6 sm:pb-8">
