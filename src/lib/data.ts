@@ -53,3 +53,9 @@ export async function getAllProjects(): Promise<CollectionEntry<'projects'>[]> {
   const allProjects = await getCollection('projects')
   return projectsSort(allProjects.filter((project) => !project.data.draft))
 }
+
+// Get a fixed number of latest projects
+export async function getNumProjects(size: number): Promise<CollectionEntry<'projects'>[]> {
+  const allProjects = await getAllProjects()
+  return allProjects.slice(0, size)
+}

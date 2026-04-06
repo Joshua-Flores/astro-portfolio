@@ -7,10 +7,14 @@ import GithubContributions from '~/components/base/GithubContributions.tsx'
 import SocialLink from '~/components/base/SocialLink.astro'
 import List from '~/components/posts/card/List.astro'
 import SkillsShowcase from '~/components/base/SkillsShowcase.astro'
-import { getNumPosts, getPinnedPosts } from '~/lib/data'
+import LqipImage from '~/components/base/LqipImage.astro'
+import Badge from '~/components/posts/base/Badge.astro'
+import { formatDate } from '~/lib/utils'
+import { getNumPosts, getPinnedPosts, getNumProjects } from '~/lib/data'
 
 const { ENABLED, GITHUB_USERNAME, TOOLTIP_ENABLED } = GITHUB_CONFIG
 const { size, type } = POSTS_CONFIG.homePageConfig
+const recentProjects = await getNumProjects(3)
 const { SKILLS_ENABLED, SKILLS_DATA } = SKILLSSHOWCASE_CONFIG
 
 let showPosts = []
@@ -23,25 +27,23 @@ if (hasPinnedPosts) {
 }
 ---
 
-<Layout title="Readme" description={SITE.description}>
+<Layout title="Home" description={SITE.description}>
   <div class="relative z-[1]">
     <div class="py-8 pb-10 px-6 sm:px-8">
       <h1 class="flex flex-col gap-2">
-        <span class="text-4xl sm:text-5xl tracking-tight"> Litos </span>
+        <span class="text-4xl sm:text-5xl tracking-tight">Joshua Flores</span>
         <span class="text-muted-foreground font-light text-xl sm:text-2xl block tracking-wide text-balance">
-          A Simple & Modern Blog Theme for Astro
+          UX Designer & Frontend Developer
         </span>
       </h1>
       <div class="pro text-muted-foreground text-pretty">
         <p>
-          Litos is a clean and modern Astro blog theme focused on content presentation and reading experience. More than just a blog, it's a
-          personal space to showcase your skills, projects, and life.
+          Senior UX designer and frontend developer with over a decade of experience across industry and government. I design and build
+          intuitive, clean interfaces using TypeScript, React, and Tailwind CSS.
         </p>
         <p>
-          Built with Tailwind CSS for elegant responsive design and React components for smooth interactions. Features light/dark theme
-          switching, multiple article layouts, GitHub contribution charts, and more. Inspired by
-          <a href="https://github.com/needim" target="_blank" rel="nofollow noreferrer">@needim</a>, redesigned by
-          <a href="https://github.com/Dnzzk2" target="_blank" rel="nofollow noreferrer">@Dnzzk2</a> based on Astro.
+          I write about frontend development, AI-powered workflows, and practical UI design. When I'm not coding, I'm probably researching
+          the next tool that'll make the process faster and better.
         </p>
       </div>
       <div class="mt-6 flex gap-6">
@@ -76,6 +78,80 @@ if (hasPinnedPosts) {
               <p class="text-muted-foreground mb-6 mt-1">It's not just skills, but also tools:</p>
             </div>
             <SkillsShowcase skillsData={SKILLS_DATA} />
+          </div>
+        </>
+      )
+    }
+    {
+      recentProjects.length > 0 && (
+        <>
+          <SectionDivider />
+          <div class="py-8 pb-10 px-6 sm:px-8">
+            <div class="flex items-baseline justify-between mb-6">
+              <div>
+                <h2 class="text-2xl sm:text-3xl tracking-tight">Recent Projects</h2>
+                <p class="text-muted-foreground mt-1">Latest {recentProjects.length} projects I've worked on.</p>
+              </div>
+              <a href="/projects" class="text-sm text-muted-foreground hover:text-primary transition-colors">
+                View all &rarr;
+              </a>
+            </div>
+            <div class="space-y-12">
+              {recentProjects.map((project, index) => (
+                <article
+                  class:list={['group flex flex-col sm:flex-row sm:flex-row-reverse gap-6 sm:gap-10', 'fade-up']}
+                  style={`animation-delay: ${index * 100}ms`}
+                >
+                  <div class="sm:w-2/6 min-[var(--layout-change-width)]:w-2/8 flex flex-col overflow-hidden">
+                    <a href={`/projects/${project.id}`} class="block relative">
+                      <div class="aspect-[1200/630] overflow-hidden bg-muted/30 relative">
+                        {project.data.cover && (
+                          <LqipImage
+                            src={project.data.cover}
+                            alt=""
+                            width={1200}
+                            height={630}
+                            loading="lazy"
+                            decoding="async"
+                            format="webp"
+                            class="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
+                    </a>
+                    <a
+                      href={`/projects/${project.id}`}
+                      class="hidden sm:inline-flex mt-2 items-center gap-2 text-sm font-medium text-foreground/60 hover:text-primary transition-colors group/read"
+                    >
+                      Read more
+                      <span class="icon-[ph--arrow-right] size-4 transition-transform group-hover/read:translate-x-1" />
+                    </a>
+                  </div>
+
+                  <div class="w-full sm:w-4/6 min-[var(--layout-change-width)]:w-6/8 flex flex-col justify-start">
+                    <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/90 mb-2">
+                      <time class="flex items-center gap-2">
+                        <span class="icon-[ph--calendar-blank] size-4" />
+                        {formatDate(project.data.pubDate)}
+                      </time>
+                    </div>
+
+                    <a href={`/projects/${project.id}`} class="group/title">
+                      <div class="text-base font-semibold transition-colors group-hover/title:text-primary line-clamp-2 leading-5 mb-1">
+                        {project.data.name}
+                      </div>
+                      {project.data.description && (
+                        <p class="text-sm text-muted-foreground/80 line-clamp-3 leading-5 mb-3">{project.data.description}</p>
+                      )}
+                    </a>
+
+                    <div class="flex flex-wrap items-center gap-2 mb-3">
+                      {project.data.tags?.map((tag) => <Badge type="tag" content={tag} />)}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </>
       )

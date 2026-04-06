@@ -11,7 +11,7 @@ import type {
   TagsConfig,
 } from '~/types'
 
-//--- Readme Page Config ---
+//--- Home Page Config ---
 export const SITE: Site = {
   title: 'joshuaflores.rocks',
   description: 'User Experience Designer and Web Developer',
@@ -19,7 +19,7 @@ export const SITE: Site = {
   lang: 'en',
   base: '/',
   author: 'Joshua Flores',
-  ogImage: '/og-image.webp',
+  ogImage: '/og-image.png',
   transition: false,
 }
 
@@ -201,9 +201,9 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
 }
 
 export const GITHUB_CONFIG: GithubConfig = {
-  ENABLED: false,
+  ENABLED: true,
   GITHUB_USERNAME: 'joshua-flores',
-  TOOLTIP_ENABLED: false,
+  TOOLTIP_ENABLED: true,
 }
 
 //--- Posts Page Config ---
@@ -213,7 +213,7 @@ export const POSTS_CONFIG: PostConfig = {
   introduce: 'Thoughts, tutorials, and project writeups.',
   author: 'Joshua Flores',
   homePageConfig: {
-    size: 2,
+    size: 3,
     type: 'compact',
   },
   postPageConfig: {
