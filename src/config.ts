@@ -25,12 +25,16 @@ export const SITE: Site = {
 
 export const HEADER_LINKS: Link[] = [
   {
+    name: 'Projects',
+    url: '/projects',
+  },
+  {
     name: 'Posts',
     url: '/posts',
   },
   {
-    name: 'Projects',
-    url: '/projects',
+    name: 'Tags',
+    url: '/tags',
   },
   {
     name: 'About',
@@ -44,12 +48,12 @@ export const FOOTER_LINKS: Link[] = [
     url: '/',
   },
   {
-    name: 'Posts',
-    url: '/posts',
-  },
-  {
     name: 'Projects',
     url: '/projects',
+  },
+  {
+    name: 'Posts',
+    url: '/posts',
   },
   {
     name: 'Tags',
