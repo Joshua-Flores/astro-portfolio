@@ -41,13 +41,12 @@ const projects = defineCollection({
     z.object({
       name: z.string(),
       description: z.string(),
+      pubDate: z.date(),
+      tags: z.array(z.string()).optional(),
       githubUrl: z.string().optional().default(''),
       website: z.string().optional().default(''),
       type: z.string(),
-      icon: image().optional(),
-      imageClass: z.string().optional(),
-      star: z.number().optional().default(0),
-      fork: z.number().optional().default(0),
+      cover: image().optional(),
       draft: z.boolean().default(false),
     }),
 })

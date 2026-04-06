@@ -41,8 +41,15 @@ export async function getAllTags(): Promise<Record<string, number>> {
   )
 }
 
-// Get projects
+// Sort projects by date
+export function projectsSort(projects: CollectionEntry<'projects'>[]) {
+  return projects.slice().sort((a, b) => {
+    return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  })
+}
+
+// Get all non-draft projects, sorted by date
 export async function getAllProjects(): Promise<CollectionEntry<'projects'>[]> {
   const allProjects = await getCollection('projects')
-  return allProjects.filter((project) => !project.data.draft)
+  return projectsSort(allProjects.filter((project) => !project.data.draft))
 }

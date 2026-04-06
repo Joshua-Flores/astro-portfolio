@@ -1,83 +1,83 @@
 ---
 import { PROJECTS_CONFIG } from '~/config'
 import Layout from '~/layouts/Layout.astro'
-import SectionDivider from '~/components/base/SectionDivider.astro'
-import { Image } from 'astro:assets'
-import { getAllProjects } from '~/lib/data'
 import PageTitle from '~/components/base/PageTitle.astro'
+import LqipImage from '~/components/base/LqipImage.astro'
+import Badge from '~/components/posts/base/Badge.astro'
+import { formatDate } from '~/lib/utils'
+import { getAllProjects } from '~/lib/data'
 
 const { title, description, introduce } = PROJECTS_CONFIG
 const projects = await getAllProjects()
+
+const IMAGE_WIDTH = 1200
+const IMAGE_HEIGHT = 630
 ---
 
 <Layout {title} {description}>
-  <div class="relative z-[1] py-8 pb-10">
-    <div class="px-6 sm:px-8">
-      <PageTitle {title} {introduce} />
-    </div>
-    <div class="grid grid-cols-1 fade-up">
-      {
-        projects.map((project, index) => {
-          return (
-            <div>
-              <div class="group relative hover:bg-muted/30 dark:hover:bg-muted/30 transition-colors duration-300 px-6 sm:px-8 py-6">
-                <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                  {/* Text content */}
-                  <div class="flex-1 min-w-0">
-                    <a
-                      href={project.data.website || project.data.githubUrl || '#'}
-                      target="_blank"
-                      class="inline-flex items-center justify-between font-semibold text-lg/relaxed"
-                    >
-                      {project.data.name}
-                    </a>
-                    <p class="text-muted-foreground mb-3">{project.data.description}</p>
-                    <div class="flex items-center gap-5 text-zinc-500 text-sm z-10">
-                      {project.data.website && (
-                        <a
-                          href={project.data.website}
-                          target="_blank"
-                          class="hover:text-zinc-600 dark:hover:text-zinc-100 flex items-center gap-1"
-                        >
-                          <span class="icon-[mdi--web] size-4" />
-                          <span>Website</span>
-                        </a>
-                      )}
-                      {project.data.githubUrl && (
-                        <a
-                          href={project.data.githubUrl}
-                          target="_blank"
-                          class="hover:text-zinc-600 dark:hover:text-zinc-100 flex items-center gap-1"
-                        >
-                          <span class="icon-[mdi--github] size-4" />
-                          <span>GitHub</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                  {/* Screenshot */}
-                  {project.data.icon && (
-                    <div class="shrink-0 sm:w-48 md:w-56">
-                      <a href={project.data.website || project.data.githubUrl || '#'} target="_blank">
-                        <Image
-                          src={project.data.icon}
-                          alt={`${project.data.name} screenshot`}
-                          width={224}
-                          height={140}
-                          class="rounded-lg border border-border/50 object-cover w-full shadow-sm group-hover:shadow-md transition-shadow duration-300"
-                          densities={[1, 2]}
+  <div class="relative z-[1] py-8 pb-10 px-6 sm:px-8">
+    <PageTitle {title} {introduce} />
+    <div class="mt-12 fade-up">
+      <div class="space-y-12 content-visibility: auto">
+        {
+          projects.map((project, index) => {
+            return (
+              <article
+                class:list={['group flex flex-col sm:flex-row sm:flex-row-reverse gap-6 sm:gap-10', 'fade-up']}
+                style={`animation-delay: ${index * 100}ms`}
+              >
+                <div class="sm:w-2/6 min-[var(--layout-change-width)]:w-2/8 flex flex-col overflow-hidden">
+                  <a href={`/projects/${project.id}`} class="block relative">
+                    <div class="aspect-[1200/630] overflow-hidden bg-muted/30 relative">
+                      {project.data.cover && (
+                        <LqipImage
+                          src={project.data.cover}
+                          alt=""
+                          width={IMAGE_WIDTH}
+                          height={IMAGE_HEIGHT}
                           loading="lazy"
+                          decoding="async"
+                          format="webp"
+                          class="w-full h-full object-cover"
                         />
-                      </a>
+                      )}
                     </div>
-                  )}
+                  </a>
+                  <a
+                    href={`/projects/${project.id}`}
+                    class="hidden sm:inline-flex mt-2 items-center gap-2 text-sm font-medium text-foreground/60 hover:text-primary transition-colors group/read"
+                  >
+                    Read more
+                    <span class="icon-[ph--arrow-right] size-4 transition-transform group-hover/read:translate-x-1" />
+                  </a>
                 </div>
-              </div>
-              <SectionDivider className={index == projects.length - 1 ? 'hidden' : ''} />
-            </div>
-          )
-        })
-      }
+
+                <div class="w-full sm:w-4/6 min-[var(--layout-change-width)]:w-6/8 flex flex-col justify-start">
+                  <div class="flex flex-wrap items-center gap-4 text-sm text-muted-foreground/90 mb-2">
+                    <time class="flex items-center gap-2">
+                      <span class="icon-[ph--calendar-blank] size-4" />
+                      {formatDate(project.data.pubDate)}
+                    </time>
+                  </div>
+
+                  <a href={`/projects/${project.id}`} class="group/title">
+                    <div class="text-base font-semibold transition-colors group-hover/title:text-primary line-clamp-2 leading-5 mb-1">
+                      {project.data.name}
+                    </div>
+                    {project.data.description && (
+                      <p class="text-sm text-muted-foreground/80 line-clamp-3 leading-5 mb-3">{project.data.description}</p>
+                    )}
+                  </a>
+
+                  <div class="flex flex-wrap items-center gap-2 mb-3">
+                    {project.data.tags?.map((tag) => <Badge type="tag" content={tag} />)}
+                  </div>
+                </div>
+              </article>
+            )
+          })
+        }
+      </div>
     </div>
   </div>
 </Layout>
