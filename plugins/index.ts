@@ -1,7 +1,7 @@
 import { visit } from 'unist-util-visit'
 import remarkSmartypants from 'remark-smartypants'
 import remarkReadingTime from './remark-reading-time'
-import remarkLQIP from './remark-lqip.js'
+import remarkLQIP from './remark-lqip'
 import remarkGithubCard from './remark-github-card'
 
 import rehypeSlug from 'rehype-slug'
