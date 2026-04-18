@@ -2,15 +2,37 @@ import { visit } from 'unist-util-visit'
 import path from 'node:path'
 import { existsSync, readdirSync } from 'node:fs'
 import sharp from 'sharp'
+import type { Image, Root } from 'mdast'
+import type { RemarkPlugin } from '@astrojs/markdown-remark'
 
-function packColor11bit(c) {
+type VFileLike = { path: string }
+
+type RGB = { r: number; g: number; b: number }
+
+type LQIPResult = {
+  width: number | undefined
+  height: number | undefined
+  lqipHex: string
+  colors: RGB[]
+}
+
+type AstroImageMetadata = {
+  src?: string
+  fsPath?: string
+  pathname?: string
+  width?: number
+  height?: number
+  format?: string
+}
+
+function packColor11bit(c: RGB): number {
   const r = Math.round((c.r / 0xff) * 0b1111)
   const g = Math.round((c.g / 0xff) * 0b1111)
   const b = Math.round((c.b / 0xff) * 0b111)
   return (r << 7) | (g << 3) | b
 }
 
-function packColor10bit(c) {
+function packColor10bit(c: RGB): number {
   const r = Math.round((c.r / 0xff) * 0b111)
   const g = Math.round((c.g / 0xff) * 0b1111)
   const b = Math.round((c.b / 0xff) * 0b111)
@@ -26,7 +48,7 @@ function packColor10bit(c) {
 /**
  * Extract 3 colors from specific positions in an image using Sharp
  */
-async function extractColors(imagePath) {
+async function extractColors(imagePath: string): Promise<RGB[] | null> {
   try {
     // Use sharp to resize image to 3x3 and get raw pixel data
     const { data, info } = await sharp(imagePath)
@@ -37,14 +59,14 @@ async function extractColors(imagePath) {
       .raw()
       .toBuffer({ resolveWithObject: true })
 
-    const pixels = []
+    const pixels: RGB[] = []
 
     // Extract RGB values from raw pixel data
     for (let a = 0; a < data.length; a += info.channels) {
       pixels.push({
-        r: data[a],
-        g: data[a + 1],
-        b: data[a + 2],
+        r: data[a]!,
+        g: data[a + 1]!,
+        b: data[a + 2]!,
       })
     }
 
@@ -53,11 +75,11 @@ async function extractColors(imagePath) {
     // 0 1 2
     // 3 4 5
     // 6 7 8
-    const [c0, c1, c2] = [pixels[0], pixels[4], pixels[8]]
+    const [c0, c1, c2] = [pixels[0]!, pixels[4]!, pixels[8]!]
 
     return [c0, c1, c2]
   } catch (error) {
-    console.warn(`Color extraction failed: ${imagePath}`, error.message)
+    console.warn(`Color extraction failed: ${imagePath}`, (error as Error).message)
     return null
   }
 }
@@ -70,8 +92,8 @@ async function extractColors(imagePath) {
  * - Color 3: uses packColor10bit (R:3bit, G:4bit, B:3bit)
  * Total 32 bits = RGBA
  */
-function packColorsToHex(colors) {
-  const [c0, c1, c2] = colors
+function packColorsToHex(colors: RGB[]): string {
+  const [c0, c1, c2] = colors as [RGB, RGB, RGB]
 
   // Use bit-packing functions from color.ts
   const pc0 = packColor11bit(c0) // 11 bits
@@ -89,7 +111,7 @@ function packColorsToHex(colors) {
 /**
  * Analyze image and generate LQIP hex value
  */
-async function analyzeImageForLQIP(imagePath) {
+async function analyzeImageForLQIP(imagePath: string): Promise<LQIPResult | null> {
   try {
     const metadata = await sharp(imagePath).metadata()
     const { width, height } = metadata
@@ -116,7 +138,7 @@ async function analyzeImageForLQIP(imagePath) {
       colors, // For debugging
     }
   } catch (error) {
-    console.warn(`LQIP analysis failed: ${imagePath}`, error.message)
+    console.warn(`LQIP analysis failed: ${imagePath}`, (error as Error).message)
     return null
   }
 }
@@ -124,7 +146,7 @@ async function analyzeImageForLQIP(imagePath) {
 /**
  * Resolve image path
  */
-function resolveImagePath(imageUrl, filePath) {
+function resolveImagePath(imageUrl: string, filePath: string): string {
   if (path.isAbsolute(imageUrl)) {
     return imageUrl
   }
@@ -143,7 +165,7 @@ function resolveImagePath(imageUrl, filePath) {
 /**
  * Process a single image node
  */
-async function processImageNode(node, filePath) {
+async function processImageNode(node: Image, filePath: string): Promise<void> {
   const imagePath = resolveImagePath(node.url, filePath)
 
   if (!existsSync(imagePath)) {
@@ -156,31 +178,31 @@ async function processImageNode(node, filePath) {
   }
 
   // Add data attributes for CSS processing
-  node.data = node.data || {}
-  node.data.hProperties = node.data.hProperties || {}
+  const data = (node.data ||= {}) as { hProperties?: Record<string, unknown> }
+  const hProperties = (data.hProperties ||= {})
 
   // Set dimension attributes
   if (lqipData.width && lqipData.height) {
-    node.data.hProperties.width = lqipData.width
-    node.data.hProperties.height = lqipData.height
+    hProperties.width = lqipData.width
+    hProperties.height = lqipData.height
   }
 
   // Set LQIP style variable
-  const style = node.data.hProperties.style || ''
+  const style = (hProperties.style as string | undefined) || ''
   const lqipStyle = `--lqip:${lqipData.lqipHex}`
 
-  node.data.hProperties.style = style ? `${style};${lqipStyle}` : lqipStyle
+  hProperties.style = style ? `${style};${lqipStyle}` : lqipStyle
 }
 
 /**
  * Remark plugin main function
  */
-function remarkLQIP() {
-  return async (tree, file) => {
-    const imagesToProcess = []
+const remarkLQIP: RemarkPlugin = () => {
+  return async (tree: Root, file: VFileLike) => {
+    const imagesToProcess: Image[] = []
 
     // Collect all image nodes
-    visit(tree, 'image', (node) => {
+    visit(tree, 'image', (node: Image) => {
       if (node.url && !node.url.match('^([a-z]+:)?//')) {
         imagesToProcess.push(node)
       }
@@ -192,7 +214,7 @@ function remarkLQIP() {
         try {
           await processImageNode(node, file.path)
         } catch (error) {
-          console.warn(`LQIP processing failed: ${node.url}`, error.message)
+          console.warn(`LQIP processing failed: ${node.url}`, (error as Error).message)
         }
       })
     )
@@ -202,22 +224,22 @@ function remarkLQIP() {
 export default remarkLQIP
 
 // In build environment, we can get caller context via stack trace
-function getCallerContext() {
+function getCallerContext(): string | null {
   const stack = new Error().stack
   if (!stack) return null
 
   // Find file path containing /content/ (Windows and Linux compatible)
   const contentMatch = stack.match(/([^:\s]+[\/\\]content[\/\\][^:\s)]+)/i)
   if (contentMatch) {
-    return contentMatch[1].replace(/\\/g, '/')
+    return contentMatch[1]!.replace(/\\/g, '/')
   }
 
   return null
 }
 
-export async function generateLQIPFromPath(src) {
+export async function generateLQIPFromPath(src: string | AstroImageMetadata | null | undefined): Promise<string | null> {
   try {
-    let imagePath
+    let imagePath: string | undefined
 
     if (typeof src === 'string') {
       imagePath = resolveImagePath(src, '')
@@ -235,10 +257,10 @@ export async function generateLQIPFromPath(src) {
         // Remove Astro's special prefix and query params
         if (cleanSrc.includes('/@fs/')) {
           // Extract real file path: /@fs/D:/Code/dnzzk2.icu/src/content/...
-          cleanSrc = cleanSrc.split('/@fs/')[1]
+          cleanSrc = cleanSrc.split('/@fs/')[1] ?? ''
           if (cleanSrc) {
             // Remove query params and normalize path separators
-            imagePath = cleanSrc.split('?')[0].replace(/\\/g, '/')
+            imagePath = cleanSrc.split('?')[0]!.replace(/\\/g, '/')
           }
         } else if (cleanSrc.startsWith('/_astro/')) {
           // For /_astro/ paths, this is an Astro-optimized path
@@ -258,7 +280,7 @@ export async function generateLQIPFromPath(src) {
               // Find files of the same type in assets directory
               const files = readdirSync(assetsDir)
               const matchingFile = files.find(
-                (file) => path.extname(file) === fileExtension || file.includes(path.parse(srcFileName).name.split('.')[0])
+                (file) => path.extname(file) === fileExtension || file.includes(path.parse(srcFileName).name.split('.')[0]!)
               )
 
               if (matchingFile) {
@@ -273,7 +295,7 @@ export async function generateLQIPFromPath(src) {
           }
         } else {
           // Handle regular path
-          imagePath = resolveImagePath(cleanSrc.split('?')[0], '')
+          imagePath = resolveImagePath(cleanSrc.split('?')[0]!, '')
         }
       } else {
         console.warn('ImageMetadata object missing usable path property:', Object.keys(src))
@@ -299,7 +321,7 @@ export async function generateLQIPFromPath(src) {
     const result = await analyzeImageForLQIP(imagePath)
     return result ? result.lqipHex : null
   } catch (error) {
-    console.warn('LQIP generation failed:', error.message)
+    console.warn('LQIP generation failed:', (error as Error).message)
     return null
   }
 }
