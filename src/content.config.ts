@@ -5,7 +5,7 @@ import type { CoverLayout, PostType } from '~/types'
 
 const posts = defineCollection({
   loader: glob({
-    pattern: '**/*.{md,mdx}',
+    pattern: '**/*.md',
     base: './src/content/posts',
   }),
   schema: ({ image }) =>
@@ -34,7 +34,7 @@ const posts = defineCollection({
 
 const projects = defineCollection({
   loader: glob({
-    pattern: '**/*.{md,mdx}',
+    pattern: '**/*.md',
     base: './src/content/projects',
   }),
   schema: ({ image }) =>

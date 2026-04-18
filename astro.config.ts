@@ -2,7 +2,6 @@ import { defineConfig } from 'astro/config'
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@astrojs/react'
-import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import robotsTxt from 'astro-robots-txt'
 import expressiveCode from 'astro-expressive-code'
@@ -29,5 +28,5 @@ export default defineConfig({
     remarkPlugins,
     rehypePlugins,
   },
-  integrations: [expressiveCode(), mdx(), react(), sitemap(), robotsTxt()],
+  integrations: [expressiveCode(), react(), sitemap(), robotsTxt()],
 })
