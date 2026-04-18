@@ -21,38 +21,29 @@ const ThemeToggle = () => {
   const theme = useStore(themeStore)
   const controlsSun = useAnimation()
   const controlsMoon = useAnimation()
-  const controlsSystem = useAnimation()
 
   useEffect(() => {
     setMounted(true)
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | 'system'
-    themeStore.set(savedTheme || 'system')
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark'
+    themeStore.set(savedTheme === 'light' ? 'light' : 'dark')
   }, [])
 
   useEffect(() => {
     if (!mounted) return
 
-    if (theme === 'system') {
-      controlsSun.start('hidden')
-      controlsSystem.start('visible')
-      controlsMoon.start('hidden')
-    } else {
-      controlsSun.start(theme === 'light' ? 'visible' : 'hidden')
-      controlsMoon.start(theme === 'dark' ? 'visible' : 'hidden')
-      controlsSystem.start('hidden')
-    }
+    controlsSun.start(theme === 'light' ? 'visible' : 'hidden')
+    controlsMoon.start(theme === 'dark' ? 'visible' : 'hidden')
 
     localStorage.setItem('theme', theme)
     applyTheme(theme)
-  }, [theme, mounted, controlsSun, controlsMoon, controlsSystem])
+  }, [theme, mounted, controlsSun, controlsMoon])
 
   const applyTheme = (newTheme: string) => {
     const root = document.documentElement
 
-    // Add transition class
     root.classList.add('disable-transition')
 
-    const isDark = newTheme === 'dark' || (newTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    const isDark = newTheme === 'dark'
     root.classList.toggle('dark', isDark)
 
     const metaThemeColor = document.querySelector('meta[name="theme-color"]')
@@ -60,19 +51,13 @@ const ThemeToggle = () => {
       metaThemeColor.setAttribute('content', isDark ? '#09090b' : '#FFFFFF')
     }
 
-    // Remove transition class
     setTimeout(() => {
       root.classList.remove('disable-transition')
     }, 300)
   }
 
   const handleClick = () => {
-    const themeMap = {
-      light: 'dark',
-      dark: 'system',
-      system: 'light',
-    }
-    themeStore.set(themeMap[theme] as 'light' | 'dark' | 'system')
+    themeStore.set(theme === 'dark' ? 'light' : 'dark')
   }
 
   return (
@@ -86,15 +71,6 @@ const ThemeToggle = () => {
           transition={{ duration: 0.2, ease: 'easeInOut' }}
         >
           <span className="icon-[tabler--sun-filled] size-5"></span>
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          variants={iconVariants}
-          initial="hidden"
-          animate={controlsSystem}
-          transition={{ duration: 0.2, ease: 'easeInOut' }}
-        >
-          <span className="icon-[tabler--device-desktop-question] size-5"></span>
         </motion.div>
         <motion.div
           className="absolute inset-0"
