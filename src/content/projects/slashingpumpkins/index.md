@@ -13,13 +13,13 @@ cover: "../../../assets/projects/slashingpumpkins.png"
 
 The Slashing Pumpkins are a novice-level beer-league ice hockey team based in Fairfax, Virginia, and I play on the team. The site is the team's public-facing hub — a home for the schedule, season record, roster, and a countdown to the next puck drop, with a heavy dose of team branding (orange accents, a pumpkin logo, and a hero video of warmups).
 
-[Visit the site](https://fairfaxslashingpumpkins.com)
-
 ## My first Claude Code project
 
-This was the first site I built almost entirely with [Claude Code](https://claude.ai/code). I scoped the features, gave feedback on designs, and reviewed every PR — but the vast majority of the actual code was written by Claude working from a `CLAUDE.md` that laid out the stack, conventions, and constraints.
+This was the first site I built almost entirely with [Claude Code](https://claude.ai/code). I started with the general tech stack I wanted and then had Claude handle as much of the nitty-gritty as possible so I could move quickly and keep my attention on styling and content. That workflow let me iterate through design concepts much faster than I could have on my own, tweaking layouts and visual directions until I landed on something I liked.
 
-A few things that worked well:
+One area I found Claude particularly helpful with was **animations** — transitions, entrance effects, the countdown ticker, and the photo marquee. Animations can be a pain to do by hand, and being able to describe the feel I wanted and get a working implementation back was a huge accelerator.
+
+A few other things that worked well:
 
 - **A well-written `CLAUDE.md` is a force multiplier.** Spelling out the tech stack (Vue 3 composition API only, PrimeVue over custom components, Tailwind only for styling, `type` over `interface`) meant I rarely had to re-correct stylistic choices between sessions.
 - **Static data in TypeScript files** (`src/data/games.ts`, `src/data/roster.ts`) kept the project backend-free and made it trivial for Claude to update the schedule after each game.
