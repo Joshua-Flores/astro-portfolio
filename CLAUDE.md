@@ -49,5 +49,5 @@ Posts were recently converted to markdown (previously MDX/other). Prefer plain `
 - Import with the `~/` alias (e.g. `import { SITE } from '~/config'`), not relative paths into `src`.
 - Edit existing theme components rather than cloning them; Litos config lives in `src/config.ts`.
 - RSS feed and the old photos page were intentionally removed — don't re-add without asking.
-- Chinese-language references from the upstream Litos theme have been stripped; keep new content English-only.
+- Non-English references from the upstream Litos theme have been stripped; keep new content English-only.
 - No Firebase, no Hugo shortcodes.
