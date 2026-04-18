@@ -3,9 +3,8 @@ import path from 'node:path'
 import { existsSync, readdirSync } from 'node:fs'
 import sharp from 'sharp'
 import type { Image, Root } from 'mdast'
+import type { VFile } from 'vfile'
 import type { RemarkPlugin } from '@astrojs/markdown-remark'
-
-type VFileLike = { path: string }
 
 type RGB = { r: number; g: number; b: number }
 
@@ -198,7 +197,7 @@ async function processImageNode(node: Image, filePath: string): Promise<void> {
  * Remark plugin main function
  */
 const remarkLQIP: RemarkPlugin = () => {
-  return async (tree: Root, file: VFileLike) => {
+  return async (tree: Root, file: VFile) => {
     const imagesToProcess: Image[] = []
 
     // Collect all image nodes

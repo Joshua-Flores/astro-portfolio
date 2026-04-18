@@ -24,7 +24,7 @@ export default defineEcConfig({
     borderColor: ({ theme }) => (theme.type === 'dark' ? '#24273a' : '#e6e9ef'),
 
     frames: {
-      frameBoxShadowCssValue: false as unknown as string,
+      frameBoxShadowCssValue: 'none',
       inlineButtonBackgroundActiveOpacity: '0.2',
       inlineButtonBackgroundHoverOrFocusOpacity: '0.1',
     },
@@ -34,13 +34,7 @@ export default defineEcConfig({
     },
   },
 
-  plugins: [
-    // @ts-expect-error — plugin accepts options at runtime but .d.ts declares none
-    pluginCollapsibleSections({
-      defaultCollapsed: false,
-    }),
-    pluginLineNumbers(),
-  ],
+  plugins: [pluginCollapsibleSections(), pluginLineNumbers()],
 
   themes: ['catppuccin-macchiato', 'catppuccin-latte'],
   themeCssSelector: (theme) => (theme.name === 'catppuccin-macchiato' ? '.dark' : ':root:not(.dark)'),
