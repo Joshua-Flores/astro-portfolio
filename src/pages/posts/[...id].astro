@@ -10,7 +10,6 @@ import { POSTS_CONFIG, SITE } from '~/config'
 import { render } from 'astro:content'
 import { getAllPosts } from '~/lib/data'
 import SectionDivider from '~/components/base/SectionDivider.astro'
-import Comment from '~/components/posts/base/Comment.astro'
 import License from '~/components/posts/base/License.astro'
 
 export async function getStaticPaths() {
@@ -72,8 +71,5 @@ const PostLayout = layoutMap[layoutKey]
     }
     {hasValidHeadings && <PostFeatures {post} {posts} headings={filterHeadings} />}
     <SectionDivider />
-    <div class="px-6 py-6 sm:px-8 pb-6 sm:pb-8">
-      <Comment id={post.id} title={frontmatter.title} />
-    </div>
   </div>
 </Layout>

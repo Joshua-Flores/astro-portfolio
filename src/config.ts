@@ -1,6 +1,5 @@
 import type {
   AnalyticsConfig,
-  CommentConfig,
   GithubConfig,
   Link,
   PostConfig,
@@ -237,24 +236,6 @@ export const POSTS_CONFIG: PostConfig = {
   prevPostText: 'Previous Post',
   recommendText: 'REC',
   wordCountView: true,
-}
-
-export const COMMENT_CONFIG: CommentConfig = {
-  enabled: false,
-  system: 'gitalk',
-  gitalk: {
-    clientID: import.meta.env.PUBLIC_GITHUB_CLIENT_ID,
-    clientSecret: import.meta.env.PUBLIC_GITHUB_CLIENT_SECRET,
-    repo: '',
-    owner: '',
-    admin: [''],
-    language: 'en-US',
-    perPage: 5,
-    pagerDirection: 'last',
-    createIssueManually: false,
-    distractionFreeMode: false,
-    enableHotKey: true,
-  },
 }
 
 export const TAGS_CONFIG: TagsConfig = {
