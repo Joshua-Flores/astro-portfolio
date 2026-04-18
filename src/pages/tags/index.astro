@@ -2,12 +2,11 @@
 import PageTitle from '~/components/base/PageTitle.astro'
 import { TAGS_CONFIG } from '~/config'
 import Layout from '~/layouts/Layout.astro'
-import { getAllPosts } from '~/lib/data'
-import { getAllTags } from '~/lib/data'
+import { getAllPosts, getAllProjects, getAllTags } from '~/lib/data'
 
 const { title, description, introduce } = TAGS_CONFIG
 
-const [tagsMap, posts] = await Promise.all([getAllTags(), getAllPosts()])
+const [tagsMap, posts, projects] = await Promise.all([getAllTags(), getAllPosts(), getAllProjects()])
 
 const sortedTags = Object.entries(tagsMap)
   .map(([tag, count]) => ({
@@ -34,6 +33,10 @@ const maxCount = Math.max(...sortedTags.map((t) => t.count))
         <span class="flex items-center gap-1.5">
           <span class="icon-[ph--article] size-4"></span>
           {posts.length} posts total
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="icon-[ph--folder] size-4"></span>
+          {projects.length} projects total
         </span>
       </div>
     </div>

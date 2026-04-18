@@ -1,9 +1,5 @@
 import { visit } from 'unist-util-visit'
 import remarkSmartypants from 'remark-smartypants'
-import remarkDirective from 'remark-directive'
-import remarkDirectiveSugar from 'remark-directive-sugar'
-import remarkImgAttr from 'remark-imgattr'
-import remarkMath from 'remark-math'
 import remarkReadingTime from './remark-reading-time'
 import remarkLQIP from './remark-lqip.js'
 import remarkGithubCard from './remark-github-card'
@@ -11,48 +7,13 @@ import remarkGithubCard from './remark-github-card'
 import rehypeSlug from 'rehype-slug'
 import rehypeUnwrapImages from 'rehype-unwrap-images'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeCallouts from 'rehype-callouts'
 import rehypeExternalLinks from 'rehype-external-links'
-import rehypeKatex from 'rehype-katex'
 
 import type { RemarkPlugin, RehypePlugin } from '@astrojs/markdown-remark'
-import { type PropertiesFromTextDirective } from 'remark-directive-sugar'
 import { type CreateProperties } from 'rehype-external-links'
 
 export const remarkPlugins = [
   remarkSmartypants,
-  remarkDirective,
-  [
-    remarkDirectiveSugar,
-    {
-      badge: {
-        presets: {
-          n: { text: 'NEW' },
-        },
-      },
-      link: {
-        // faviconSourceUrl: 'https://icon.horse/icon/{domain}', // 1000/month limit
-        faviconSourceUrl: 'https://www.google.com/s2/favicons?domain={domain}&sz=128', // recommended ✨
-        imgProps: () => {
-          const props: ReturnType<PropertiesFromTextDirective> = {
-            'aria-hidden': 'true',
-          }
-          return props
-        },
-      },
-      image: {
-        stripParagraph: false,
-      },
-      video: {
-        platforms: {
-          // Disable autoplay to avoid distraction
-          bilibili: 'https://player.bilibili.com/player.html?bvid={id}&autoplay=0',
-        },
-      },
-    },
-  ],
-  remarkImgAttr,
-  remarkMath,
   remarkReadingTime,
   remarkLQIP,
   remarkGithubCard,
@@ -85,7 +46,6 @@ export const rehypePlugins = [
       },
     },
   ],
-  [rehypeCallouts, { theme: 'vitepress' }],
   [
     rehypeExternalLinks,
     {
@@ -93,5 +53,4 @@ export const rehypePlugins = [
       rel: ['noopener', 'noreferrer'],
     },
   ],
-  rehypeKatex,
 ] as RehypePlugin[]

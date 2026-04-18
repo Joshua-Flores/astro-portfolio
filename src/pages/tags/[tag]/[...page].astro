@@ -5,19 +5,21 @@ import { POSTS_CONFIG } from '~/config'
 import Layout from '~/layouts/Layout.astro'
 import Pagination from '~/components/base/Pagination.astro'
 import List from '~/components/posts/card/List.astro'
-import { getAllPosts, getAllTags } from '~/lib/data'
+import { getAllPosts, getAllProjects, getAllTags } from '~/lib/data'
+import { formatDate } from '~/lib/utils'
 
 export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
-  const [allPosts, tagsMap] = await Promise.all([getAllPosts(), getAllTags()])
+  const [allPosts, allProjects, tagsMap] = await Promise.all([getAllPosts(), getAllProjects(), getAllTags()])
 
   const uniqueTags = Object.keys(tagsMap)
 
   return uniqueTags
     .map((tag) => {
       const tagPosts = allPosts.filter((post) => post.data.tags?.includes(tag))
+      const tagProjects = allProjects.filter((project) => project.data.tags?.includes(tag))
       return paginate(tagPosts, {
         params: { tag },
-        props: { tag },
+        props: { tag, tagProjects },
         pageSize: POSTS_CONFIG.tagsPageConfig.size,
       })
     })
@@ -27,10 +29,12 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
 interface Props {
   page: Page<CollectionEntry<'posts'>>
   tag: string
+  tagProjects: CollectionEntry<'projects'>[]
 }
 
-const { page, tag } = Astro.props
-const description = `Posts with the tag #${tag}`
+const { page, tag, tagProjects } = Astro.props
+const isFirstPage = page.currentPage === 1
+const description = `Posts and projects with the tag #${tag}`
 ---
 
 <Layout title={`#${tag}`} {description}>
@@ -55,14 +59,46 @@ const description = `Posts with the tag #${tag}`
               <span class="icon-[ph--article-medium] w-4 h-4"></span>
               <span>{page.total} {page.total === 1 ? 'post' : 'posts'}</span>
             </div>
+            {tagProjects.length > 0 && (
+              <div class="flex items-center gap-2">
+                <span class="icon-[ph--folder] w-4 h-4"></span>
+                <span>{tagProjects.length} {tagProjects.length === 1 ? 'project' : 'projects'}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
 
-    <div class="space-y-8 fade-up">
-      <List posts={page.data} type={POSTS_CONFIG.tagsPageConfig.type} coverLayout={POSTS_CONFIG.tagsPageConfig?.coverLayout} />
-    </div>
+    {isFirstPage && tagProjects.length > 0 && (
+      <section class="mb-12 fade-up">
+        <h2 class="text-lg font-medium mb-4 text-foreground/90">Projects</h2>
+        <ul class="space-y-3">
+          {tagProjects.map((project) => (
+            <li>
+              <a href={`/projects/${project.id}`} class="group flex items-baseline justify-between gap-4 py-2 border-b border-border/40 hover:border-border transition-colors">
+                <div class="min-w-0">
+                  <div class="text-base font-medium text-foreground group-hover:text-primary transition-colors truncate">
+                    {project.data.name}
+                  </div>
+                  {project.data.description && (
+                    <p class="text-sm text-muted-foreground/80 line-clamp-1">{project.data.description}</p>
+                  )}
+                </div>
+                <time class="shrink-0 text-xs text-muted-foreground/70">{formatDate(project.data.pubDate)}</time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {page.data.length > 0 && (
+      <div class="space-y-8 fade-up">
+        {tagProjects.length > 0 && isFirstPage && <h2 class="text-lg font-medium text-foreground/90">Posts</h2>}
+        <List posts={page.data} type={POSTS_CONFIG.tagsPageConfig.type} coverLayout={POSTS_CONFIG.tagsPageConfig?.coverLayout} />
+      </div>
+    )}
 
     <Pagination {page} baseUrl={`/tags/${tag}`} class="mt-12" />
   </div>
