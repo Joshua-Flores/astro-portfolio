@@ -27,8 +27,6 @@ I started off by creating a development site using DreamHost since they offered 
 
 At the end of the process we had a completely redesigned and deployed site with just a few weekends worth of work that exceeded their expectations. From a user experience perspective one of the most endearing things was to see the priest go in there and add events, photos, and other content without assistance from myself.
 
-[Visit site](https://ststephensforest.org)
-
 ## Screenshots
 
 Check out the screenshots below to see the before and after.

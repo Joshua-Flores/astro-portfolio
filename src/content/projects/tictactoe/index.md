@@ -13,12 +13,6 @@ cover: "../../../assets/projects/tictactoe.png"
 
 Turn based tic-tac-toe game with the ability to name players. Built as part of a learning exercise while going through The Odin Project. Detects when the game is complete and congratulates the winner.
 
-[Try it out!](https://frosty-babbage-596eea.netlify.app/)
-
 ## Screenshots
 
 ![site screenshot](./featured.png)
-
-## More
-
-[View on GitHub](https://github.com/Joshua-Flores/tic-tac-toe)

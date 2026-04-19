@@ -52,45 +52,55 @@ const hasValidHeadings = filterHeadings.length > 1
                   </time>
                 </div>
 
-                {remarkPluginFrontmatter.minutesRead && (
-                  <div class="flex items-center gap-1.5">
-                    <span class="icon-[ph--book-open-text] w-4 h-4 opacity-85" />
-                    <span>{remarkPluginFrontmatter.minutesRead} mins</span>
-                  </div>
-                )}
-                {POSTS_CONFIG.wordCountView && remarkPluginFrontmatter.wordCount && (
-                  <div class="flex items-center gap-1.5">
-                    <span class="icon-[ph--pencil-simple-line] w-4 h-4 opacity-85" />
-                    <span>{remarkPluginFrontmatter.wordCount} words</span>
-                  </div>
-                )}
+                {
+                  remarkPluginFrontmatter.minutesRead && (
+                    <div class="flex items-center gap-1.5">
+                      <span class="icon-[ph--book-open-text] w-4 h-4 opacity-85" />
+                      <span>{remarkPluginFrontmatter.minutesRead} mins</span>
+                    </div>
+                  )
+                }
+                {
+                  POSTS_CONFIG.wordCountView && remarkPluginFrontmatter.wordCount && (
+                    <div class="flex items-center gap-1.5">
+                      <span class="icon-[ph--pencil-simple-line] w-4 h-4 opacity-85" />
+                      <span>{remarkPluginFrontmatter.wordCount} words</span>
+                    </div>
+                  )
+                }
               </div>
 
               <div class="flex gap-2 sm:gap-2.5 lg:gap-3 flex-wrap">
                 {data.tags?.map((tag: string) => <Badge type="tag" content={tag} size="sm" />)}
               </div>
 
-              <div class="flex items-center gap-5 text-sm">
-                {data.website && (
-                  <a
-                    href={data.website}
-                    target="_blank"
-                    class="hover:text-primary flex items-center gap-1 text-muted-foreground"
-                  >
-                    <span class="icon-[mdi--web] size-4" />
-                    <span>Website</span>
-                  </a>
-                )}
-                {data.githubUrl && (
-                  <a
-                    href={data.githubUrl}
-                    target="_blank"
-                    class="hover:text-primary flex items-center gap-1 text-muted-foreground"
-                  >
-                    <span class="icon-[mdi--github] size-4" />
-                    <span>GitHub</span>
-                  </a>
-                )}
+              <div class="flex items-center gap-3 sm:gap-4 text-sm">
+                {
+                  data.website && (
+                    <a
+                      href={data.website}
+                      target="_blank"
+                      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-primary text-primary-foreground font-medium shadow-sm hover:bg-primary/80 hover:shadow-md transition-all duration-200"
+                    >
+                      <span class="icon-[mdi--web] size-4" />
+                      <span>Visit Site</span>
+                      <span class="icon-[ph--arrow-up-right] size-3.5 opacity-80" />
+                    </a>
+                  )
+                }
+                {
+                  data.githubUrl && (
+                    <a
+                      href={data.githubUrl}
+                      target="_blank"
+                      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-md border border-primary/60 text-primary font-medium hover:bg-primary/10 hover:border-primary transition-all duration-200"
+                    >
+                      <span class="icon-[mdi--github] size-4" />
+                      <span>GitHub Repo</span>
+                      <span class="icon-[ph--arrow-up-right] size-3.5 opacity-80" />
+                    </a>
+                  )
+                }
               </div>
             </div>
             <div class="border-b border-border/60 my-8 sm:my-10 lg:my-12"></div>
@@ -103,38 +113,40 @@ const hasValidHeadings = filterHeadings.length > 1
       </div>
     </article>
 
-    {(prev || next) && (
-      <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-        <nav class="flex flex-col sm:flex-row justify-between gap-6 pt-2 border-t border-border/50">
-          {next && (
-            <a href={`/projects/${next.id}`} class="group flex-1 relative">
-              <div class="absolute -left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-200">
-                <span class="icon-[ph--arrow-left] size-4 text-primary" />
-              </div>
-              <div class="group-hover:pl-6 transition-all duration-200">
-                <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">Previous</span>
-                <p class="mt-1.5 font-semibold text-base text-foreground/90 group-hover:text-primary transition-colors line-clamp-1">
-                  {next.data.name}
-                </p>
-              </div>
-            </a>
-          )}
-          {prev && (
-            <a href={`/projects/${prev.id}`} class="group flex-1 relative text-right">
-              <div class="absolute -right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
-                <span class="icon-[ph--arrow-right] size-4 text-primary" />
-              </div>
-              <div class="group-hover:pr-6 transition-all duration-200">
-                <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">Next</span>
-                <p class="mt-1.5 font-semibold text-base text-foreground/90 group-hover:text-primary transition-colors line-clamp-1">
-                  {prev.data.name}
-                </p>
-              </div>
-            </a>
-          )}
-        </nav>
-      </div>
-    )}
+    {
+      (prev || next) && (
+        <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+          <nav class="flex flex-col sm:flex-row justify-between gap-6 pt-2 border-t border-border/50">
+            {next && (
+              <a href={`/projects/${next.id}`} class="group flex-1 relative">
+                <div class="absolute -left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-x-1 transition-all duration-200">
+                  <span class="icon-[ph--arrow-left] size-4 text-primary" />
+                </div>
+                <div class="group-hover:pl-6 transition-all duration-200">
+                  <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">Previous</span>
+                  <p class="mt-1.5 font-semibold text-base text-foreground/90 group-hover:text-primary transition-colors line-clamp-1">
+                    {next.data.name}
+                  </p>
+                </div>
+              </a>
+            )}
+            {prev && (
+              <a href={`/projects/${prev.id}`} class="group flex-1 relative text-right">
+                <div class="absolute -right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
+                  <span class="icon-[ph--arrow-right] size-4 text-primary" />
+                </div>
+                <div class="group-hover:pr-6 transition-all duration-200">
+                  <span class="text-[10px] uppercase tracking-widest text-muted-foreground/70">Next</span>
+                  <p class="mt-1.5 font-semibold text-base text-foreground/90 group-hover:text-primary transition-colors line-clamp-1">
+                    {prev.data.name}
+                  </p>
+                </div>
+              </a>
+            )}
+          </nav>
+        </div>
+      )
+    }
 
     {hasValidHeadings && <TableOfContents headings={filterHeadings} class="hidden xl:block fade-up animation-delay-150" />}
 

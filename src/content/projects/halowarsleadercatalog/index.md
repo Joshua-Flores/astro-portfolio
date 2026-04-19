@@ -126,6 +126,4 @@ Here's an example of the JSON output when retrieving all leaders:
 
 ## Conclusion
 
-This project was a rewarding experience, allowing me to dive into backend development and learn by doing at the same time. Feel free to take a look at the repo linked below and try it out for yourself.
-
-[View on GitHub](https://github.com/Joshua-Flores/halo-wars-catalog)
+This project was a rewarding experience, allowing me to dive into backend development and learn by doing at the same time.
