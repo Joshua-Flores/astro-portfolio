@@ -1,17 +1,56 @@
 ---
 import { ClientRouter } from 'astro:transitions'
-import { ANALYTICS_CONFIG, SITE } from '~/config'
+import { ANALYTICS_CONFIG, SITE, SOCIAL_LINKS } from '~/config'
 
 type Props = {
   title: string
   description: string
   image?: string
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
 }
 
-const { title, description, image }: Props = Astro.props
+const { title, description, image, jsonLd }: Props = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const ogImage = new URL(image || SITE.ogImage, Astro.url)
+
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === SITE.base
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.author,
+  alternateName: ['Josh Flores', 'Joshua P. Flores'],
+  url: SITE.website,
+  image: new URL(SITE.ogImage, SITE.website).toString(),
+  jobTitle: 'Senior Frontend Engineer & UX Designer',
+  description: SITE.description,
+  sameAs: SOCIAL_LINKS.filter((s) => s.url.startsWith('http')).map((s) => s.url),
+  knowsAbout: [
+    'Frontend Development',
+    'Web Development',
+    'User Experience Design',
+    'TypeScript',
+    'React',
+    'Vue',
+    'Astro',
+    'Tailwind CSS',
+    'Accessibility',
+  ],
+}
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.title,
+  url: SITE.website,
+  description: SITE.description,
+  author: { '@type': 'Person', name: SITE.author, url: SITE.website },
+  inLanguage: SITE.lang,
+}
+
+const defaultJsonLd = isHome ? [personJsonLd, websiteJsonLd] : [websiteJsonLd]
+const jsonLdPayload = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : defaultJsonLd
 ---
 
 <script is:inline>
@@ -37,15 +76,21 @@ const ogImage = new URL(image || SITE.ogImage, Astro.url)
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
-<meta name="google" content="notranslate" />
 
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content={SITE.author} />
+<meta
+  name="keywords"
+  content="Joshua Flores, Josh Flores, web developer, frontend developer, senior frontend engineer, UX designer, user experience designer, React developer, Vue developer, TypeScript, Astro, portfolio"
+/>
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
 <!-- color -->
-<meta name="theme-color" content="" />
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 <meta name="color-scheme" content="light dark" />
 
 <!-- icon -->
@@ -65,12 +110,16 @@ const ogImage = new URL(image || SITE.ogImage, Astro.url)
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Open Graph & Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={isHome ? 'profile' : 'website'} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:site_name" content={SITE.title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={`${SITE.author} — Senior Frontend Engineer & UX Designer`} />
+<meta property="og:locale" content="en_US" />
+{isHome && <meta property="profile:first_name" content="Joshua" />}
+{isHome && <meta property="profile:last_name" content="Flores" />}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -78,6 +127,10 @@ const ogImage = new URL(image || SITE.ogImage, Astro.url)
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImage} />
+<meta property="twitter:image:alt" content={`${SITE.author} — Senior Frontend Engineer & UX Designer`} />
+
+<!-- Structured Data (JSON-LD) -->
+{jsonLdPayload.map((data) => <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />)}
 
 
 {

@@ -12,8 +12,9 @@ import type {
 
 //--- Home Page Config ---
 export const SITE: Site = {
-  title: 'joshuaflores.rocks',
-  description: 'User Experience Designer and Web Developer',
+  title: 'Joshua Flores',
+  description:
+    'Joshua Flores is a senior frontend engineer and UX designer with 15+ years building web apps in Vue, React, and TypeScript. Portfolio, projects, and writing.',
   website: 'https://joshuaflores.rocks/',
   lang: 'en',
   base: '/',

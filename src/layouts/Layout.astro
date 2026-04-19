@@ -12,15 +12,18 @@ type Props = {
   title: string
   description: string
   image?: string
+  rawTitle?: boolean
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
 }
 
-const { title, description, image }: Props = Astro.props
+const { title, description, image, rawTitle, jsonLd }: Props = Astro.props
+const finalTitle = rawTitle ? title : `${title} | ${SITE.title}`
 ---
 
 <!doctype html>
 <html lang={SITE.lang} transition:name="root" transition:animate={SITE.transition ? 'fade' : 'none'}>
   <head>
-    <Head title={`${title} | ${SITE.title}`} {description} {image} />
+    <Head title={finalTitle} {description} {image} {jsonLd} />
   </head>
   <body class="flex flex-col">
     <Header />
