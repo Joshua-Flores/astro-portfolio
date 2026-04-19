@@ -54,30 +54,31 @@ if (hasPinnedPosts) {
         }
       </div>
     </div>
-    {
-      ENABLED && (
-        <>
-          <SectionDivider />
-          <div class="py-8 pb-10 px-6 max-md:px-6">
-            <div class="px-2 max-md:px-0">
-              <h2 class="text-2xl sm:text-3xl">Spotlight</h2>
-              <p class="text-muted-foreground mb-6 mt-1">GitHub contributions in the past year:</p>
-            </div>
-            <GithubContributions username={GITHUB_USERNAME} tooltipEnabled={TOOLTIP_ENABLED} client:load transition:animate="none" />
-          </div>
-        </>
-      )
-    }
+
     {
       SKILLS_ENABLED && SKILLS_DATA.length > 0 && (
         <>
           <SectionDivider />
           <div class="py-8 pb-10 px-6 max-md:px-6">
             <div class="px-2 max-md:px-0">
-              <h2 class="text-2xl sm:text-3xl tracking-tight">Skills</h2>
-              <p class="text-muted-foreground mb-6 mt-1">It's not just skills, but also tools:</p>
+              <h2 class="text-2xl sm:text-3xl tracking-tight">Daily Drivers</h2>
+              <p class="text-muted-foreground mb-6 mt-1">What I reach for when building things:</p>
             </div>
             <SkillsShowcase skillsData={SKILLS_DATA} />
+          </div>
+        </>
+      )
+    }
+    {
+      ENABLED && (
+        <>
+          <SectionDivider />
+          <div class="py-8 pb-10 px-6 max-md:px-6">
+            <div class="px-2 max-md:px-0">
+              <h2 class="text-2xl sm:text-3xl">GitHub Spotlight</h2>
+              <p class="text-muted-foreground mb-6 mt-1">GitHub contributions in the past year:</p>
+            </div>
+            <GithubContributions username={GITHUB_USERNAME} tooltipEnabled={TOOLTIP_ENABLED} client:load transition:animate="none" />
           </div>
         </>
       )
@@ -146,7 +147,9 @@ if (hasPinnedPosts) {
                     </a>
 
                     <div class="flex flex-wrap items-center gap-2 mb-3">
-                      {project.data.tags?.map((tag) => <Badge type="tag" content={tag} />)}
+                      {project.data.tags?.map((tag) => (
+                        <Badge type="tag" content={tag} />
+                      ))}
                     </div>
                   </div>
                 </article>

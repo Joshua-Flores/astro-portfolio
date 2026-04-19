@@ -4,7 +4,7 @@ import { SITE } from '~/config'
 ---
 
 <Layout title="About" description={`About ${SITE.author}`}>
-  <article class="p-6 md:p-10 prose prose-neutral dark:prose-invert max-w-none">
+  <article class="p-6 md:p-10 prose dark:prose-invert max-w-none">
     <h1>About</h1>
 
     <p>
@@ -68,10 +68,10 @@ import { SITE } from '~/config'
 
     <h3>3. Develop</h3>
     <p>
-      This phase involves bringing the design to life. My go-to tech stack includes TypeScript, React, and Tailwind CSS. I also heavily
-      value unit testing with libraries such as Jest and Playwright to ensure future changes don't break existing work.
+      This phase involves bringing the design to life. My go-to tech stack often includes TypeScript, Vue, a component library, and Tailwind
+      CSS. Of course this often changes though I also heavily value unit testing with libraries such as Vitest and Playwright to ensure
+      future changes don't break existing work.
     </p>
-    <p>For websites where users need control over their content, there's often no better solution than WordPress.</p>
 
     <h3>4. Iterate</h3>
     <p>
@@ -80,3 +80,9 @@ import { SITE } from '~/config'
     </p>
   </article>
 </Layout>
+
+<style>
+  article :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-sans);
+  }
+</style>
