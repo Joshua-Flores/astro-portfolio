@@ -16,7 +16,7 @@ This is the official site for the novice hockey team I play on — the Slashing 
 
 ![Fairfax Slashing Pumpkins logo](./slashing-pumpkins-screenshot.jpg)
 
-## First experiment with claude
+## First Experiment with Claude Code
 
 This was the first site I built almost entirely with [Claude Code](https://claude.ai/code). I started with the general tech stack I wanted and then had Claude handle as much of the nitty-gritty as possible so I could move quickly and keep my attention on styling and content. That workflow let me iterate through design concepts much faster than I could have on my own, tweaking layouts and visual directions until I landed on something I liked.
 
