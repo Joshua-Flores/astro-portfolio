@@ -95,6 +95,16 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
       direction: 'left',
       skills: [
         {
+          name: 'HTML',
+          icon: 'icon-[skill-icons--html]',
+          url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+        },
+        {
+          name: 'CSS',
+          icon: 'icon-[skill-icons--css]',
+          url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+        },
+        {
           name: 'TypeScript',
           icon: 'icon-[skill-icons--typescript]',
           url: 'https://www.typescriptlang.org/',
@@ -105,24 +115,14 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
           url: 'https://react.dev/',
         },
         {
-          name: 'Tailwind CSS',
-          icon: 'icon-[skill-icons--tailwindcss-dark]',
-          url: 'https://tailwindcss.com/',
+          name: 'Vue',
+          icon: 'icon-[skill-icons--vuejs-dark]',
+          url: 'https://vuejs.org',
         },
         {
-          name: 'JavaScript',
-          icon: 'icon-[skill-icons--javascript]',
-          url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-        },
-        {
-          name: 'HTML',
-          icon: 'icon-[skill-icons--html]',
-          url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
-        },
-        {
-          name: 'CSS',
-          icon: 'icon-[skill-icons--css]',
-          url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+          name: 'Claude',
+          icon: 'icon-[logos--claude-icon]',
+          url: 'https://claude.com/',
         },
       ],
     },
@@ -130,14 +130,44 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
       direction: 'right',
       skills: [
         {
-          name: 'Python',
-          icon: 'icon-[skill-icons--python-dark]',
-          url: 'https://www.python.org/',
+          name: 'Astro',
+          icon: 'icon-[skill-icons--astro]',
+          url: 'https://astro.build/',
         },
         {
           name: 'FastAPI',
           icon: 'icon-[skill-icons--fastapi]',
           url: 'https://fastapi.tiangolo.com/',
+        },
+        {
+          name: 'Tailwind CSS',
+          icon: 'icon-[skill-icons--tailwindcss-dark]',
+          url: 'https://tailwindcss.com/',
+        },
+        {
+          name: 'Material-UI',
+          icon: 'icon-[logos--material-ui]',
+          url: 'https://mui.com/material-ui/',
+        },
+        {
+          name: 'PrimeVue',
+          icon: 'icon-[simple-icons--primevue]',
+          url: 'https://primevue.org/',
+        },
+      ],
+    },
+    {
+      direction: 'left',
+      skills: [
+        {
+          name: 'Vitest',
+          icon: 'icon-[logos--vitest]',
+          url: 'https://vitest.dev/',
+        },
+        {
+          name: 'Playwright',
+          icon: 'icon-[logos--playwright]',
+          url: 'https://playwright.dev/',
         },
         {
           name: 'Figma',
@@ -150,49 +180,9 @@ export const SKILLSSHOWCASE_CONFIG: SkillsShowcaseConfig = {
           url: 'https://wordpress.org/',
         },
         {
-          name: 'Astro',
-          icon: 'icon-[skill-icons--astro]',
-          url: 'https://astro.build/',
-        },
-        {
-          name: 'Git',
-          icon: 'icon-[skill-icons--git]',
-          url: 'https://git-scm.com/',
-        },
-      ],
-    },
-    {
-      direction: 'left',
-      skills: [
-        {
-          name: 'Node.js',
-          icon: 'icon-[skill-icons--nodejs-dark]',
-          url: 'https://nodejs.org/',
-        },
-        {
-          name: 'VS Code',
-          icon: 'icon-[skill-icons--vscode-dark]',
-          url: 'https://code.visualstudio.com/',
-        },
-        {
           name: 'Netlify',
           icon: 'icon-[skill-icons--netlify-dark]',
           url: 'https://www.netlify.com/',
-        },
-        {
-          name: 'Playwright',
-          icon: 'icon-[logos--playwright]',
-          url: 'https://playwright.dev/',
-        },
-        {
-          name: 'Jest',
-          icon: 'icon-[skill-icons--jest]',
-          url: 'https://jestjs.io/',
-        },
-        {
-          name: 'Bootstrap',
-          icon: 'icon-[skill-icons--bootstrap]',
-          url: 'https://getbootstrap.com/',
         },
       ],
     },
