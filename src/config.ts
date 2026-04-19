@@ -203,7 +203,7 @@ export const POSTS_CONFIG: PostConfig = {
   author: 'Joshua Flores',
   homePageConfig: {
     size: 3,
-    type: 'compact',
+    type: 'image',
   },
   postPageConfig: {
     size: 10,
