@@ -2,7 +2,7 @@
 
 ## Project
 
-Personal portfolio site for Joshua Flores (https://joshuaflores.rocks). Built with **Astro 5** using the **Litos** theme. Migrated from Hugo (Blowfish theme) — the directory name `hugo-portfolio` is historical; this is now an Astro project.
+Personal portfolio site for Joshua Flores (https://joshuaflores.rocks). Built with **Astro 5**, originally based on the **Litos** theme but now heavily customized — treat it as a bespoke codebase rather than a themed site. Migrated from Hugo (Blowfish theme) — the directory name `hugo-portfolio` is historical; this is now an Astro project.
 
 Deployed to **Netlify** (see `netlify.toml`).
 
@@ -47,7 +47,7 @@ Posts were recently converted to markdown (previously MDX/other). Prefer plain `
 ## Conventions
 
 - Import with the `~/` alias (e.g. `import { SITE } from '~/config'`), not relative paths into `src`.
-- Edit existing theme components rather than cloning them; Litos config lives in `src/config.ts`.
+- Edit existing components in place rather than cloning them; site-wide config lives in `src/config.ts`.
 - RSS feed and the old photos page were intentionally removed — don't re-add without asking.
-- Non-English references from the upstream Litos theme have been stripped; keep new content English-only.
+- Non-English references from the original theme have been stripped; keep new content English-only.
 - No Firebase, no Hugo shortcodes.
