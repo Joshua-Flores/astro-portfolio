@@ -150,6 +150,24 @@
     @apply min-h-screen bg-background text-foreground;
   }
 
+  /* Light-mode inset frame: 16px indigo-500 border bleeding around the page */
+  :root:not(.dark) {
+    background-color: var(--color-indigo-500);
+  }
+
+  :root:not(.dark) body {
+    padding: 16px;
+  }
+
+  :root:not(.dark) body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    border: 16px solid var(--color-indigo-500);
+    pointer-events: none;
+    z-index: 100;
+  }
+
   /* Heading styles */
   h1,
   h2,
