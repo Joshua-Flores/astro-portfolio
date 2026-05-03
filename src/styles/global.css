@@ -150,25 +150,34 @@
     @apply min-h-screen bg-background text-foreground;
   }
 
-  /* Light-mode inset frame: 16px indigo-500 border bleeding around the page */
+  /* Light-mode inset frame: body becomes the scroll container so content
+     stays clipped inside the indigo border and sticky top-0 elements
+     align to the frame edge. */
   :root:not(.dark) {
     background-color: var(--color-indigo-500);
   }
 
+  :root:not(.dark),
   :root:not(.dark) body {
-    padding: 16px;
+    height: 100dvh;
   }
 
-  :root:not(.dark) body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+  :root:not(.dark) {
+    overflow: hidden;
+  }
+
+  :root:not(.dark) body {
+    margin: 0;
     border: 16px solid var(--color-indigo-500);
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow:
       inset 0 0 24px 4px var(--color-indigo-500),
       inset 0 0 48px 0 color-mix(in oklab, var(--color-indigo-500) 45%, transparent);
-    pointer-events: none;
-    z-index: 100;
+    /* Make body the containing block for fixed descendants (HeaderGradient,
+       etc.) so they respect the inset area. */
+    transform: translateZ(0);
   }
 
   /* Heading styles */
