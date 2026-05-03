@@ -15,6 +15,7 @@
 
   /* Color system */
   --color-border: hsl(var(--border));
+  --color-divider: hsl(var(--divider));
   --color-ring: hsl(var(--ring));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -88,6 +89,11 @@
     --tag-border: 220 25% 90%;
     --tag-text: 225 15% 35%;
 
+    /* Divider color (used for SectionDivider and main/footer vertical lines).
+       Near-black in light mode for contrast against the indigo frame; matches
+       --border in dark mode. */
+    --divider: 240 6% 10%;
+
     /* Scrollbar */
     --scrollbar: 220 20% 80%;
     --scrollbar-bg: 220 25% 95%;
@@ -120,6 +126,7 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
     --border: 240 3.7% 15.9%;
+    --divider: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
     --tag-bg: 240 20% 13%;
     --tag-bg-hover: 240 20% 25%;
@@ -141,43 +148,42 @@
     background-color: var(--color-background);
     font-family: var(--font-sans);
     scroll-behavior: smooth;
+    height: 100dvh;
+    overflow: hidden;
+    transition: background-color 300ms ease;
     @variant dark {
       color-scheme: dark;
     }
   }
 
   body {
-    @apply min-h-screen bg-background text-foreground;
+    @apply bg-background text-foreground;
+    height: 100dvh;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 0 solid var(--color-indigo-500);
+    box-shadow: 0 0 0 0 var(--color-indigo-500);
+    /* Make body the containing block for fixed descendants (HeaderGradient,
+       etc.) so they respect the inset area when the indigo border is on. */
+    transform: translateZ(0);
+    transition:
+      border-width 300ms ease,
+      box-shadow 300ms ease,
+      background-color 300ms ease;
   }
 
-  /* Light-mode inset frame: body becomes the scroll container so content
-     stays clipped inside the indigo border and sticky top-0 elements
-     align to the frame edge. */
+  /* Light-mode inset frame: 16px indigo-500 border + soft inner glow */
   :root:not(.dark) {
     background-color: var(--color-indigo-500);
   }
 
-  :root:not(.dark),
   :root:not(.dark) body {
-    height: 100dvh;
-  }
-
-  :root:not(.dark) {
-    overflow: hidden;
-  }
-
-  :root:not(.dark) body {
-    margin: 0;
-    border: 16px solid var(--color-indigo-500);
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
+    border-width: 16px;
     box-shadow:
       inset 0 0 24px 4px var(--color-indigo-500),
       inset 0 0 48px 0 color-mix(in oklab, var(--color-indigo-500) 45%, transparent);
-    /* Make body the containing block for fixed descendants (HeaderGradient,
-       etc.) so they respect the inset area. */
-    transform: translateZ(0);
   }
 
   /* Heading styles */
@@ -232,12 +238,15 @@
     animation-delay: 200ms;
   }
 
-  /* Theme toggle animation */
-  html.disable-transition,
+  /* Theme toggle animation: suppress per-element transitions during a theme
+     swap to avoid color-flash, BUT keep the html/body transitions running so
+     the light-mode inset frame can animate in/out. */
   html.disable-transition * {
-    transition: none !important;
     view-transition-name: none !important;
     --astro-view-transition: none !important;
+  }
+  html.disable-transition *:not(body) {
+    transition: none !important;
   }
 }
 
