@@ -6,7 +6,7 @@ tags: ["Vue", "TypeScript", "Vite", "PrimeVue", "Tailwind", "Claude Code"]
 githubUrl: "https://github.com/Joshua-Flores/slashing-pumpkins"
 website: "https://fairfaxslashingpumpkins.com"
 type: "Frontend"
-cover: "./slashing-pumpkins-screenshot.jpg"
+cover: "./slashing-pumpkins-screenshot.png"
 ---
 
 
@@ -14,7 +14,7 @@ cover: "./slashing-pumpkins-screenshot.jpg"
 
 This is the official site for the novice hockey team I play on — the Slashing Pumpkins, based in Fairfax, Virginia. It all started with a logo: one of our players designed the pumpkin mark that became the face of the team, and I took that as the jumping-off point and used my web design skills to build a professional-looking site around it. The result is the team's public-facing hub — a home for the schedule, season record, roster, and a countdown to the next puck drop, with a heavy dose of team branding (orange accents, the pumpkin logo, and a hero video of warmups).
 
-![Fairfax Slashing Pumpkins logo](./slashing-pumpkins-screenshot.jpg)
+![Fairfax Slashing Pumpkins logo](./slashing-pumpkins-screenshot.png)
 
 ## First Experiment with Claude Code
 
