@@ -7,9 +7,9 @@ import FooterLink from '~/components/base/FooterLink.astro'
 const yearDisplay = new Date().getFullYear()
 ---
 
-<SectionDivider className="border-t-border dark:border-t-border/50" />
+<SectionDivider className="border-t-divider dark:border-t-border/50" />
 <footer>
-  <div class="py-4 flex-none border-x border-border/50 global-layout-width mx-auto">
+  <div class="py-4 flex-none border-x border-divider/50 global-layout-width mx-auto">
     <div class="pb-8">
       <div
         class="flex flex-wrap gap-x-3 sm:gap-x-6 gap-y-1 text-sm font-medium text-muted-foreground pb-4 px-6 sm:px-8 border-b border-border/50"
@@ -22,11 +22,11 @@ const yearDisplay = new Date().getFullYear()
           <div class="grow"></div>
           <div class="flex gap-2 items-center" transition:persist="footer-theme-toggle">
             <a
-              href="https://github.com/Dnzzk2/Litos"
+              href="https://github.com/joshua-flores"
               target="_blank"
               class="inline-flex items-center justify-center hover:scale-105"
-              aria-label="GitHub Source"
-              title="GitHub Source"
+              aria-label="GitHub Profile"
+              title="GitHub Profile"
             >
               <span class="icon-[mdi--github] size-5"></span>
             </a>

@@ -16,7 +16,7 @@ const duplicateSkills = (skills: Skill[]) => [...skills, ...skills, ...skills, .
     skillsData.map((row: SkillData) => {
       const duplicatedSkills = duplicateSkills(row.skills)
       return (
-        <div class="relative w-full overflow-hidden my-4 group content-visibility-auto">
+        <div class="skills-row relative w-full overflow-hidden my-4 group content-visibility-auto">
           <div
             class={cn(
               'flex w-max will-change-transform',
@@ -46,11 +46,17 @@ const duplicateSkills = (skills: Skill[]) => [...skills, ...skills, ...skills, .
     })
   }
 
-  <div class="pointer-events-none absolute left-0 top-0 w-[10%] h-full bg-gradient-to-r from-background to-transparent z-10"></div>
-  <div class="pointer-events-none absolute right-0 top-0 w-[10%] h-full bg-gradient-to-l from-background to-transparent z-10"></div>
 </div>
 
 <style is:global>
+  /* Fade each scrolling row to transparent at the edges via mask-image, so
+     it blends into whatever's behind (white content area, indigo glow) instead
+     of slabbing a hard white gradient over it. */
+  .skills-row {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 18%, black 82%, transparent);
+  }
+
   @keyframes scroll {
     0% {
       transform: translate3d(0, 0, 0);
