@@ -28,26 +28,39 @@ You pull into the lot and the first thing that hits you is the silence. No one m
 
 You go inside. There's just me at a desk. I nod, point you toward the kiosk in the corner, and go back to whatever I was doing. The kiosk is a touchscreen and a little thermal printer, like ordering pho.
 
-The form has two sections. The first is **Logistics:**
+The form has two sections.
 
-- Do you want detailed feature walkthroughs, or do you already know what you want?
-- Test drive: solo, or accompanied?
-- Financing pitch: yes / no / "mention it once and never again"
-- Extended warranty: hard pitch / soft mention / do not speak of it
+<div class="kiosk">
+  <div class="kiosk-head">
+    <span class="kiosk-brand">Josh’s No-Stress Used Cars</span>
+    <span class="kiosk-sub">Customer experience intake · Terminal 1</span>
+  </div>
 
-Then the screen says *"Now, let's talk about your salesman,"* and section two is **Performance:**
+  <h4 class="kiosk-legend"><span>01</span> Logistics</h4>
+  <ul class="kiosk-fields">
+    <li>Do you want detailed feature walkthroughs, or do you already know what you want?</li>
+    <li>Test drive: solo, or accompanied?</li>
+    <li>Financing pitch: yes / no / “mention it once and never again”</li>
+    <li>Extended warranty: hard pitch / soft mention / do not speak of it</li>
+  </ul>
 
-- Energy level (1–10)
-- Should he use your first name a suspicious number of times?
-- Should he pretend to "go check with the manager"? *(If yes: how many times?)*
-- Should he act like this specific car is the one *he* personally would buy?
-- Should he invent a fake competing buyer who's "also been looking at this one"?
-- Should he tell you a personal anecdote? *(Topic randomized.)*
-- Closing handshake: firm / two-handed / none
+  <h4 class="kiosk-legend"><span>02</span> Performance</h4>
+  <p class="kiosk-note">Now, let’s talk about your salesman.</p>
+  <ul class="kiosk-fields">
+    <li>Energy level (1–10)</li>
+    <li>Should he use your first name a suspicious number of times?</li>
+    <li>Should he pretend to “go check with the manager”? <em>(If yes: how many times?)</em></li>
+    <li>Should he act like this specific car is the one <em>he</em> personally would buy?</li>
+    <li>Should he invent a fake competing buyer who’s “also been looking at this one”?</li>
+    <li>Should he tell you a personal anecdote? <em>(Topic randomized.)</em></li>
+    <li>Closing handshake: firm / two-handed / none</li>
+  </ul>
 
-And the last question, separated from everything else, just floating at the bottom of the screen:
-
-- **At the end, should I toss you the keys?** Y / N
+  <p class="kiosk-final">
+    <span>At the end, should I toss you the keys?</span>
+    <span>Y / N</span>
+  </p>
+</div>
 
 You fill it out. Let's say you went: energy 4, no first-name thing, *yes* to the manager bit (twice), yes he'd buy this one himself, no fake competing buyer, and keys: toss.
 
