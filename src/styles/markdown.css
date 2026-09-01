@@ -795,3 +795,138 @@ image-figure-polaroid {
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+/* ===== Kiosk Form (thermal-printed intake form) ===== */
+.markdown .kiosk {
+  --kiosk-pad: clamp(1.125rem, 4vw, 2rem);
+  --kiosk-ink: light-dark(#1c1917, #d5d5d6);
+  --kiosk-dim: light-dark(#78716c, #8b8b93);
+  --kiosk-rule: light-dark(#d6d3d1, #34343a);
+  --kiosk-paper: light-dark(#f7f6f1, #1a1a1e);
+  --kiosk-accent: light-dark(#b45309, #f59e0b);
+
+  margin-block: var(--space-2xl);
+  padding: var(--kiosk-pad);
+  padding-block-end: calc(var(--kiosk-pad) + 10px);
+  background: var(--kiosk-paper);
+  color: var(--kiosk-ink);
+  font-family: var(--font-geist-mono);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+
+  /* torn receipt edge: a row of 18x10 teeth hanging off the bottom */
+  --kiosk-teeth: conic-gradient(from -42deg at 50% 100%, #000 0 84deg, #0000 0) 0 100% / 18px 10px repeat-x;
+  --kiosk-body: linear-gradient(#000 0 0) 0 0 / 100% calc(100% - 10px) no-repeat;
+  -webkit-mask: var(--kiosk-body), var(--kiosk-teeth);
+  mask: var(--kiosk-body), var(--kiosk-teeth);
+}
+
+.markdown .kiosk-head {
+  padding-block-end: var(--space-md);
+  border-block-end: 1px dashed var(--kiosk-rule);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.markdown .kiosk-brand {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.markdown .kiosk-sub {
+  display: block;
+  margin-block-start: var(--space-xs);
+  color: var(--kiosk-dim);
+  font-size: 0.6875rem;
+}
+
+.markdown .kiosk-legend {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  margin-block: var(--space-lg) var(--space-sm);
+  color: var(--kiosk-ink);
+  font-family: var(--font-geist-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.markdown .kiosk-legend > span {
+  color: var(--kiosk-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.markdown .kiosk-legend::after {
+  content: '';
+  flex: 1;
+  border-block-end: 1px dashed var(--kiosk-rule);
+  translate: 0 -0.25em;
+}
+
+.markdown .kiosk-fields {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* hanging indent so wrapped lines and inline <em> stay in the text column */
+.markdown .kiosk-fields > li {
+  display: block;
+  position: static;
+  padding: 0.45rem 0 0.45rem 2.15rem;
+  text-indent: -2.15rem;
+  margin: 0;
+}
+
+.markdown .kiosk-fields > li + li {
+  border-block-start: 1px solid color-mix(in srgb, var(--kiosk-rule) 55%, transparent);
+}
+
+/* reset the theme's absolutely-positioned bullet dot */
+.markdown .kiosk-fields > li::before {
+  content: '[ ]';
+  display: inline-block;
+  position: static;
+  inset: auto;
+  inline-size: 2.15rem;
+  block-size: auto;
+  text-indent: 0;
+  background: none;
+  border-radius: 0;
+  opacity: 1;
+  color: var(--kiosk-dim);
+}
+
+.markdown .kiosk-fields em {
+  color: var(--kiosk-dim);
+  font-style: italic;
+}
+
+.markdown .kiosk-final {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-xl);
+  padding: var(--space-md);
+  border: 1px solid var(--kiosk-accent);
+  font-weight: 600;
+}
+
+.markdown .kiosk-final > span:last-child {
+  color: var(--kiosk-accent);
+  letter-spacing: 0.25em;
+  white-space: nowrap;
+}
+
+.markdown .kiosk-note {
+  margin-block: 0 var(--space-sm);
+  padding-inline-start: 1.75rem;
+  color: var(--kiosk-dim);
+  font-style: italic;
+}
