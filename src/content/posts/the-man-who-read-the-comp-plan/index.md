@@ -24,7 +24,7 @@ So Claude and I wrote it.
 
 ## Story
 
-*A guy signs up at a "devil corp" sales office on purpose — and wins.*
+*A short story written by Claude and I about a guy who signs up at a "devil corp" sales office on purpose — and wins.*
 
 ---
 
