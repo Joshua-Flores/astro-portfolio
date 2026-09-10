@@ -930,3 +930,124 @@ image-figure-polaroid {
   color: var(--kiosk-dim);
   font-style: italic;
 }
+
+/* ===== Comp Doc (photocopied compensation schedule) ===== */
+.markdown .compdoc {
+  --compdoc-pad: clamp(1.125rem, 4vw, 2.25rem);
+  --compdoc-ink: light-dark(#1c1917, #cfcfd2);
+  --compdoc-dim: light-dark(#78716c, #85858d);
+  --compdoc-rule: light-dark(#c9c5bd, #33333a);
+  --compdoc-paper: light-dark(#fbfaf6, #131316);
+  --compdoc-accent: light-dark(#7f1d1d, #f87171);
+  --compdoc-mark: light-dark(#fde68a, #78350f);
+
+  position: relative;
+  margin-block: var(--space-2xl);
+  padding: var(--compdoc-pad);
+  background: var(--compdoc-paper);
+  color: var(--compdoc-ink);
+  border: 1px solid var(--compdoc-rule);
+  font-family: var(--font-geist-mono);
+  font-size: 0.78125rem;
+  line-height: 1.75;
+
+  /* the faint gutter shadow of a page photocopied off-center */
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--compdoc-ink) 14%, transparent) 0, transparent 1.75rem);
+}
+
+.markdown .compdoc-head {
+  padding-block-end: var(--space-md);
+  margin-block-end: var(--space-lg);
+  border-block-end: 2px solid var(--compdoc-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  overflow-wrap: anywhere;
+}
+
+.markdown .compdoc-title {
+  display: block;
+  font-weight: 600;
+  font-size: clamp(0.6875rem, 2.4vw, 0.8125rem);
+  text-wrap: balance;
+}
+
+.markdown .compdoc-meta {
+  display: block;
+  margin-block-start: var(--space-xs);
+  color: var(--compdoc-dim);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+}
+
+/* hanging clause numbers, legal-document style */
+.markdown .compdoc-clause {
+  --compdoc-hang: clamp(2.25rem, 8vw, 3.25rem);
+  margin-block: 0 var(--space-lg);
+  padding-inline-start: var(--compdoc-hang);
+  text-indent: calc(-1 * var(--compdoc-hang));
+  font-size: inherit;
+  line-height: inherit;
+  text-wrap: pretty;
+}
+
+.markdown .compdoc-num {
+  display: inline-block;
+  inline-size: var(--compdoc-hang);
+  text-indent: 0;
+  color: var(--compdoc-accent);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.markdown .compdoc mark {
+  background: var(--compdoc-mark);
+  color: inherit;
+  padding: 0.1em 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.markdown .compdoc-fn {
+  margin-block: 0 var(--space-xl);
+  padding-block-start: var(--space-sm);
+  border-block-start: 1px solid var(--compdoc-rule);
+  color: var(--compdoc-dim);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+}
+
+.markdown .compdoc-nine {
+  margin-block-end: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  border-inline-start: 3px solid var(--compdoc-accent);
+  background: color-mix(in srgb, var(--compdoc-accent) 7%, transparent);
+}
+
+.markdown .compdoc-nine-label {
+  display: block;
+  margin-block-end: var(--space-xs);
+  color: var(--compdoc-accent);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.markdown .compdoc-nine p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown .compdoc-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  justify-content: space-between;
+  padding-block-start: var(--space-md);
+  border-block-start: 1px solid var(--compdoc-rule);
+  color: var(--compdoc-dim);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
