@@ -12,11 +12,13 @@ cover: ./comp-plan-cover.jpg
 
 ## Introduction
 
-If you job-hunted in your twenties, you've met one of these. The listing says **Marketing Coordinator, entry level, $50–75K, immediate start**. The first interview is a Zoom with nine people in it. The second round is an unpaid nine-hour day of door-knocking in February, described as "an investment in mutual evaluation."
+I fell down a YouTube rabbit hole recently: people who apply to sketchy job listings on purpose, then troll the interview — straight-faced, politely asking the questions the recruiter can't answer. I'd never heard the term for these companies before. They're called devil corps.
 
-People call these places devil corps. The usual story told about them is a horror story — someone gets chewed up, works seventy hours a week for eighteen thousand dollars, and leaves with a nervous system that never fully recovers.
+Here's the shape of it. Anybody looking for normal office work has scrolled past the listing: **Marketing Coordinator, entry level, $50–75K, immediate start**. Vague company, stock-photo website, a lot of words about Fortune 500 partners. The first interview is a Zoom with nine other candidates on it. Nobody will tell you what the job actually is, because the job is knocking on doors on straight commission, and the second round is an unpaid nine-hour day of doing exactly that — described as "an investment in mutual evaluation."
 
-I wanted the other story. Not the guy who beats it with hustle, and not the guy who exposes it. The guy who walks in already knowing exactly what it is, treats it as a system with an exploit in it, and beats it by reading the documentation.
+The usual story told about these places is a horror story. Someone gets chewed up, works seventy hours a week for eighteen thousand dollars, and leaves with a nervous system that never fully recovers.
+
+I wanted a different story. Not the guy who beats it with hustle, not the guy who exposes it, and not the guy who trolls it for content. The guy who walks in already knowing exactly what it is, treats it as a system with an exploit in it, and beats it by reading the documentation.
 
 So Claude and I wrote it.
 
