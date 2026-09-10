@@ -24,13 +24,7 @@ So Claude and I wrote it.
 
 ---
 
-## Story
-
-*A short story written by Claude and I about a guy who signs up at a "devil corp" sales office on purpose — and wins.*
-
----
-
-### I. The Application
+## I. The Application
 
 The listing said **MARKETING COORDINATOR — ENTRY LEVEL — $50,000–$75,000 — Immediate Start.** It had been posted four days ago and also, according to a cached version Dennis found, eleven months ago, and also fourteen months before that. The company was called Pinnacle Vantage Group. Their website was a stock photo of a handshake, a stock photo of a skyline, and the sentence *We bridge the gap between our Fortune 500 clients and the customers who need them most.*
 
@@ -42,7 +36,7 @@ He got a call in nine minutes. A young man named Tyler said he'd been "really im
 
 ---
 
-### II. Round One (Group Format)
+## II. Round One (Group Format)
 
 The Zoom was called **"Career Discovery Session — Ambitious Candidates Only."** Wednesday, 11:00 a.m., which meant everyone on it either had no job or was lying to one.
 
@@ -110,7 +104,7 @@ He had already found the PDF.
 
 ---
 
-### III. The Eleven Pages
+## III. The Eleven Pages
 
 It was on the corporate site, under a tab called **Independent Contractor Resources**, between a link to a broken webinar and a stock photo of a woman laughing at a laptop. It was titled *2024 Compensation Schedule (Rev. 3)*. Eleven pages. Dennis read it twice, at a kitchen table, with a pen.
 
@@ -151,7 +145,7 @@ Then he closed the laptop and went to bed, because Round Two started at 7:15.
 
 ---
 
-### IV. Atmosphere
+## IV. Atmosphere
 
 The office was in a strip mall between a vape shop and a storefront that had said COMING SOON since 2019. There were folding tables, a whiteboard with everyone's name on it, a Bluetooth speaker, and a laminated poster of a pyramid that management insisted was a "career path" and not a pyramid, despite being a pyramid.
 
@@ -171,7 +165,7 @@ They were not stupid. That's the thing people get wrong. They were, most of them
 
 ---
 
-### V. The Heresies
+## V. The Heresies
 
 **The first heresy: Dennis went where there were no doors.**
 
@@ -225,7 +219,7 @@ She looked at him the way you look at someone who tells you they don't dream.
 
 ---
 
-### VI. Richmond
+## VI. Richmond
 
 Month nine. He cleared six figures — actually cleared it, on the 1099, after the residuals stacked up and the dental group added a seventh location.
 
@@ -235,7 +229,7 @@ The whole time, Dennis was thinking about whether he could deduct the tie.
 
 ---
 
-### VII. What Broke
+## VII. What Broke
 
 The office came apart after Richmond, and it came apart because of arithmetic.
 
@@ -253,7 +247,7 @@ Tyler was found at 7:40 one morning sitting in his Elantra in the strip mall lot
 
 ---
 
-### VIII. The Offer
+## VIII. The Offer
 
 They offered Dennis his own office. The prize. The top of the laminated pyramid — run his own location, build his own team, *unlimited earning potential.*
 
@@ -267,7 +261,7 @@ He quit on a Tuesday, and he took the residuals with him, because page nine said
 
 ---
 
-### IX. Afterward
+## IX. Afterward
 
 They still tell it at Pinnacle Vantage. There's a guy in Richmond, right now, in a hotel conference room, saying the name: *Dennis Vole, first year, $140K, and he came in with nothing.* Proof the system works. Proof it's all real. Kyle tells it to new hires with genuine tears in his eyes.
 
