@@ -34,7 +34,12 @@ const getRelativeIndentClass = (depth: number) => {
 }
 ---
 
-<div class={cn('hidden xl:block fixed top-30 right-[calc(50%-var(--layout-half-width))] translate-x-full w-[clamp(12rem,18vw,18rem)]', className)}>
+<div
+  class={cn(
+    'hidden xl:block fixed top-30 right-[calc(50%-var(--layout-half-width))] translate-x-full w-[clamp(12rem,18vw,18rem)]',
+    className
+  )}
+>
   <nav class="p-4">
     <h3 class="font-sans text-sm font-medium mb-4 text-foreground/80 flex items-center gap-2 pl-2">
       <span class="icon-[fluent--list-20-filled] w-4 h-4 opacity-85"></span>
@@ -46,35 +51,33 @@ const getRelativeIndentClass = (depth: number) => {
         data-desktop-toc-list
         style="content-visibility: auto;"
       >
-        {
-          filteredHeadings.map((heading) => {
-            const depthClass = heading.depth === 1 ? 'font-medium text-foreground' : 'text-foreground/60 hover:text-foreground/90'
+        {filteredHeadings.map((heading) => {
+          const depthClass = heading.depth === 1 ? 'font-medium text-foreground' : 'text-foreground/60 hover:text-foreground/90'
 
-            return (
-              <li class={cn(depthClass, getRelativeIndentClass(heading.depth) || '')}>
-                <a
-                  href={`#${heading.slug}`}
-                  data-desktop-heading-link
-                  class={cn(
-                    'group flex items-center text-sm min-h-[1.75rem] w-full overflow-hidden relative',
-                    'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
-                    'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent '
-                  )}
+          return (
+            <li class={cn(depthClass, getRelativeIndentClass(heading.depth) || '')}>
+              <a
+                href={`#${heading.slug}`}
+                data-desktop-heading-link
+                class={cn(
+                  'group flex items-center text-sm min-h-[1.75rem] w-full overflow-hidden relative',
+                  'hover:bg-gradient-to-r hover:from-primary/10 dark:hover:from-primary/25 hover:to-transparent',
+                  'data-[active]:bg-gradient-to-r data-[active]:from-primary/10 dark:data-[active]:from-primary/25 data-[active]:to-transparent '
+                )}
+              >
+                <span class="font-mono flex items-center px-2 text-xs text-primary/50 group-hover:text-primary group-data-[active]:text-primary min-w-[2rem]">
+                  {heading.order.toString().padStart(2, '0')}
+                </span>
+                <span
+                  class="leading-[1.75rem] truncate pr-2 group-hover:text-primary group-data-[active]:text-primary"
+                  title={heading.text}
                 >
-                  <span class="font-mono flex items-center px-2 text-xs text-primary/50 group-hover:text-primary group-data-[active]:text-primary min-w-[2rem]">
-                    {heading.order.toString().padStart(2, '0')}
-                  </span>
-                  <span
-                    class="leading-[1.75rem] truncate pr-2 group-hover:text-primary group-data-[active]:text-primary"
-                    title={heading.text}
-                  >
-                    {heading.text}
-                  </span>
-                </a>
-              </li>
-            )
-          })
-        }
+                  {heading.text}
+                </span>
+              </a>
+            </li>
+          )
+        })}
       </ul>
     </div>
   </nav>

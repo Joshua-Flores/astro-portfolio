@@ -71,14 +71,11 @@ function generateErrorContributions(): Response {
 
 // Generate default placeholder data
 function generatePlaceholderContributions(): Response {
-  const contributions = Array.from(
-    { length: 371 },
-    (_, index): Contribution => ({
-      date: new Date(Date.now() - (371 - index) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      count: 0,
-      level: 0,
-    })
-  )
+  const contributions = Array.from({ length: 371 }, (_, index): Contribution => ({
+    date: new Date(Date.now() - (371 - index) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    count: 0,
+    level: 0,
+  }))
 
   return {
     contributions,

@@ -15,9 +15,7 @@ const displayDate = post.data.updatedDate || post.data.pubDate
     </div>
   </a>
 
-  <time
-    class="flex-shrink-0 text-sm text-muted-foreground/90 group-hover:text-primary transition-colors duration-200 whitespace-nowrap font-mono"
-  >
+  <time class="flex-shrink-0 text-sm text-muted-foreground/90 group-hover:text-primary transition-colors duration-200 whitespace-nowrap font-mono">
     {formatDate(displayDate, 'dot')}
   </time>
 </article>

@@ -31,10 +31,7 @@ export async function getNumPosts(size: number): Promise<CollectionEntry<'posts'
 // Get tags from posts and projects
 export async function getAllTags(): Promise<Record<string, number>> {
   const [allPosts, allProjects] = await Promise.all([getAllPosts(), getAllProjects()])
-  const tags = [
-    ...allPosts.flatMap((post) => post.data.tags || []),
-    ...allProjects.flatMap((project) => project.data.tags || []),
-  ]
+  const tags = [...allPosts.flatMap((post) => post.data.tags || []), ...allProjects.flatMap((project) => project.data.tags || [])]
   return tags.reduce(
     (acc, tag) => {
       acc[tag] = (acc[tag] || 0) + 1

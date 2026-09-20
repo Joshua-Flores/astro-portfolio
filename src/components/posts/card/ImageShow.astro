@@ -22,20 +22,18 @@ const recommendText = POSTS_CONFIG.recommendText
   <div class="sm:w-2/6 min-[var(--layout-change-width)]:w-2/8 flex flex-col overflow-hidden">
     <a href={`/posts/${post.id}`} class="block relative">
       <div class="aspect-[1200/630] overflow-hidden bg-muted/30 relative">
-        {
-          post.data.cover && (
-            <LqipImage
-              src={post.data.cover}
-              alt=""
-              width={IMAGE_WIDTH}
-              height={IMAGE_HEIGHT}
-              loading="lazy"
-              decoding="async"
-              format="webp"
-              class="w-full h-full object-cover"
-            />
-          )
-        }
+        {post.data.cover && (
+          <LqipImage
+            src={post.data.cover}
+            alt=""
+            width={IMAGE_WIDTH}
+            height={IMAGE_HEIGHT}
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            class="w-full h-full object-cover"
+          />
+        )}
       </div>
     </a>
     <a
@@ -54,14 +52,12 @@ const recommendText = POSTS_CONFIG.recommendText
         {formatDate(post.data.pubDate)}
       </time>
 
-      {
-        post.data.updatedDate && (
-          <time class="flex items-center gap-2">
-            <span class="icon-[ph--clock-clockwise] size-4" />
-            {formatDate(post.data.updatedDate)}
-          </time>
-        )
-      }
+      {post.data.updatedDate && (
+        <time class="flex items-center gap-2">
+          <span class="icon-[ph--clock-clockwise] size-4" />
+          {formatDate(post.data.updatedDate)}
+        </time>
+      )}
     </div>
 
     <a href={`/posts/${post.id}`} class="group/title">
@@ -73,7 +69,9 @@ const recommendText = POSTS_CONFIG.recommendText
 
     <div class="flex flex-wrap items-center gap-2 mb-3">
       {post.data.recommend && <Badge type="recommend" content={recommendText} />}
-      {post.data.tags?.map((tag) => <Badge type="tag" content={tag} />)}
+      {post.data.tags?.map((tag) => (
+        <Badge type="tag" content={tag} />
+      ))}
     </div>
 
     <!-- <a

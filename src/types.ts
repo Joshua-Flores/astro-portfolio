@@ -180,17 +180,8 @@ export interface ProjectConfig {
 export type IconType = 'icon' | 'image'
 
 export interface AnalyticsConfig {
-  vercount?: {
+  plausible?: {
     enabled: boolean
-  }
-  umami?: {
-    enabled: boolean
-    websiteId: string
-    serverUrl: string
-  }
-  google?: {
-    enabled: boolean
-    id: string
+    src: string
   }
 }
-
