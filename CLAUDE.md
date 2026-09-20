@@ -2,52 +2,48 @@
 
 ## Project
 
-Personal portfolio site for Joshua Flores (https://joshuaflores.rocks). Built with **Astro 5** using the **Litos** theme. Migrated from Hugo (Blowfish theme) — the directory name `hugo-portfolio` is historical; this is now an Astro project.
+Personal portfolio site for Joshua Flores (https://joshuaflores.rocks), built with **Astro 5** on the **Litos** theme. Deployed to **Netlify** (`netlify.toml`, Node 20).
 
-Deployed to **Netlify** (see `netlify.toml`).
+The directory name `hugo-portfolio` is historical — this is an Astro project, not Hugo.
 
 ## Stack
 
 - **Astro 5** + **React 19** (islands for interactive bits)
-- **Tailwind CSS 4** (via `@tailwindcss/vite`)
-- **TypeScript** with `~/*` alias → `./src/*`
-- **pnpm** (see `pnpm-lock.yaml`) — use `pnpm`, not npm/yarn
+- **Tailwind CSS 4** via `@tailwindcss/vite`
+- **TypeScript**, with `~/*` aliased to `./src/*`
+- **pnpm** — use `pnpm`, not npm/yarn
 - **Pagefind** for static search (runs in `postbuild`)
-- **Expressive Code** + Shiki for code blocks
+- **Expressive Code** for code blocks (`ec.config.ts`)
 - **nanostores** for client-side state
-- Markdown pipeline: remark/rehype plugins in `./plugins/`, plus `rehype-katex`, `rehype-callouts`, `remark-math`, `remark-directive-sugar`, `remark-imgattr`, etc.
+- **Plausible** for analytics — the only analytics provider
 
 ## Scripts
 
 - `pnpm dev` — local dev server
 - `pnpm build` — `astro check` + `astro build` + Pagefind index
-- `pnpm preview` — preview built site
-- `pnpm format:write` — Prettier (with `prettier-plugin-astro`)
+- `pnpm preview` — preview the built site
+- `pnpm format:write` — Prettier
 
 ## Layout
 
-- `src/config.ts` — **site-wide config** (title, nav links, socials, post/project/tags/analytics settings). Edit here, not scattered across components.
-- `src/content.config.ts` — Astro content collection schemas for `posts` and `projects`.
-- `src/content/posts/<slug>/index.md` — blog posts (each in its own folder, co-located with images).
-- `src/content/projects/<slug>/index.md` — portfolio project entries.
-- `src/pages/` — routes: `index.astro`, `about.astro`, `posts/`, `projects/`, `tags/`, `404.astro`.
-- `src/layouts/`, `src/components/`, `src/styles/`, `src/assets/`, `src/stores/`, `src/lib/`, `src/types.ts`.
-- `plugins/` — custom remark/rehype plugins wired into `astro.config.ts`.
-- `public/` — static assets served at root (favicon, og-image, etc.).
-- `ec.config.mjs` — Expressive Code config (line numbers, collapsible sections).
+- `src/config.ts` — site-wide config (title, nav, socials, posts/projects/tags, analytics). Edit here rather than scattering settings across components.
+- `src/content.config.ts` — content collection schemas for `posts` and `projects`.
+- `src/content/posts/<slug>/index.md` — blog posts, each in its own folder with its images.
+- `src/content/projects/<slug>/index.md` — portfolio entries.
+- `src/pages/` — routes: home, about, posts, projects, tags, 404.
+- `plugins/` — custom remark/rehype plugins, wired up in `astro.config.ts`.
+- `public/` — static assets served at root (favicon, og-image, fonts).
 
 ## Content authoring
 
-Posts frontmatter (see schema in `src/content.config.ts`): `title`, `description`, `pubDate` (Date), `tags?`, `updatedDate?`, `author?`, `cover?`, `ogImage?`, `recommend?`, `postType?`, `coverLayout?`, `pinned?`, `draft?`, `license?`. If `POSTS_CONFIG.ogImageUseCover` is set, `cover` is used as `ogImage` automatically.
+Write posts as plain `.md`. Frontmatter is defined by the schemas in `src/content.config.ts` — check there for the current fields rather than copying an older post.
 
-Projects frontmatter: `name`, `description`, `pubDate`, `type`, `tags?`, `githubUrl?`, `website?`, `cover?`, `draft?`.
-
-Posts were recently converted to markdown (previously MDX/other). Prefer plain `.md` with the remark-directive-sugar syntax already enabled.
+Posts: `title`, `description`, `pubDate` required; `tags`, `cover`, `draft`, `pinned` and others optional.
+Projects: `name`, `description`, `pubDate`, `type` required; `tags`, `githubUrl`, `website`, `cover`, `draft` optional.
 
 ## Conventions
 
-- Import with the `~/` alias (e.g. `import { SITE } from '~/config'`), not relative paths into `src`.
-- Edit existing theme components rather than cloning them; Litos config lives in `src/config.ts`.
-- RSS feed and the old photos page were intentionally removed — don't re-add without asking.
-- Non-English references from the upstream Litos theme have been stripped; keep new content English-only.
-- No Firebase, no Hugo shortcodes.
+- Import with the `~/` alias (`import { SITE } from '~/config'`), not relative paths into `src`.
+- Edit existing theme components rather than cloning them.
+- RSS feed and the old photos page were removed on purpose — don't re-add without asking.
+- Keep content English-only.

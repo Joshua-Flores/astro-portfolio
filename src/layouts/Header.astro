@@ -17,13 +17,11 @@ import favicon from '../../public/favicon.svg'
         <Image src={favicon} width={1000} height={1000} alt="Logo" class="w-8 h-8" densities={[1, 2]} loading="eager" />
       </a>
       <div class="flex gap-1">
-        {
-          HEADER_LINKS.map((link) => (
-            <HeaderLink href={link.url} background>
-              {link.name}
-            </HeaderLink>
-          ))
-        }
+        {HEADER_LINKS.map((link) => (
+          <HeaderLink href={link.url} background>
+            {link.name}
+          </HeaderLink>
+        ))}
       </div>
     </div>
     <div class="flex gap-2 items-center" transition:persist="header-theme-toggle">

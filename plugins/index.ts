@@ -2,7 +2,6 @@ import { visit } from 'unist-util-visit'
 import remarkSmartypants from 'remark-smartypants'
 import remarkReadingTime from './remark-reading-time'
 import remarkLQIP from './remark-lqip'
-import remarkGithubCard from './remark-github-card'
 
 import rehypeSlug from 'rehype-slug'
 import rehypeUnwrapImages from 'rehype-unwrap-images'
@@ -12,12 +11,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 import type { RemarkPlugin, RehypePlugin } from '@astrojs/markdown-remark'
 import { type CreateProperties } from 'rehype-external-links'
 
-export const remarkPlugins = [
-  remarkSmartypants,
-  remarkReadingTime,
-  remarkLQIP,
-  remarkGithubCard,
-] as RemarkPlugin[]
+export const remarkPlugins = [remarkSmartypants, remarkReadingTime, remarkLQIP] as RemarkPlugin[]
 
 export const rehypePlugins = [
   rehypeSlug,

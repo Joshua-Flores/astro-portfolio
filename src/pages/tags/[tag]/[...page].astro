@@ -51,18 +51,20 @@ const description = `Posts and projects with the tag #${tag}`
         </nav>
 
         <div class="flex gap-2 justify-between">
-          <h1 class="text-xl sm:text-3xl font-medium tracking-wide">
-            #{tag}
-          </h1>
+          <h1 class="text-xl sm:text-3xl font-medium tracking-wide">#{tag}</h1>
           <div class="flex flex-col items-end justify-center gap-1 text-sm text-muted-foreground/70">
             <div class="flex items-center gap-2">
               <span class="icon-[ph--article-medium] w-4 h-4"></span>
-              <span>{page.total} {page.total === 1 ? 'post' : 'posts'}</span>
+              <span>
+                {page.total} {page.total === 1 ? 'post' : 'posts'}
+              </span>
             </div>
             {tagProjects.length > 0 && (
               <div class="flex items-center gap-2">
                 <span class="icon-[ph--folder] w-4 h-4"></span>
-                <span>{tagProjects.length} {tagProjects.length === 1 ? 'project' : 'projects'}</span>
+                <span>
+                  {tagProjects.length} {tagProjects.length === 1 ? 'project' : 'projects'}
+                </span>
               </div>
             )}
           </div>
@@ -76,14 +78,15 @@ const description = `Posts and projects with the tag #${tag}`
         <ul class="space-y-3">
           {tagProjects.map((project) => (
             <li>
-              <a href={`/projects/${project.id}`} class="group flex items-baseline justify-between gap-4 py-2 border-b border-border/40 hover:border-border transition-colors">
+              <a
+                href={`/projects/${project.id}`}
+                class="group flex items-baseline justify-between gap-4 py-2 border-b border-border/40 hover:border-border transition-colors"
+              >
                 <div class="min-w-0">
                   <div class="text-base font-medium text-foreground group-hover:text-primary transition-colors truncate">
                     {project.data.name}
                   </div>
-                  {project.data.description && (
-                    <p class="text-sm text-muted-foreground/80 line-clamp-1">{project.data.description}</p>
-                  )}
+                  {project.data.description && <p class="text-sm text-muted-foreground/80 line-clamp-1">{project.data.description}</p>}
                 </div>
                 <time class="shrink-0 text-xs text-muted-foreground/70">{formatDate(project.data.pubDate)}</time>
               </a>

@@ -242,12 +242,8 @@ export const PROJECTS_CONFIG: ProjectConfig = {
 }
 
 export const ANALYTICS_CONFIG: AnalyticsConfig = {
-  vercount: {
-    enabled: false,
-  },
-  umami: {
-    enabled: false,
-    websiteId: '',
-    serverUrl: '',
+  plausible: {
+    enabled: true,
+    src: 'https://plausible.io/js/pa-unm_xXw5KtpPn8_HbQ9fp.js',
   },
 }
