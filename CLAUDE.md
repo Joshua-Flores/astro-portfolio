@@ -2,7 +2,7 @@
 
 ## Project
 
-Personal portfolio site for Joshua Flores (https://joshuaflores.rocks), built with **Astro 5** on the **Litos** theme. Deployed to **Netlify** (`netlify.toml`, Node 20).
+Personal portfolio site for Joshua Flores (https://joshuaflores.rocks), built with **Astro 5** on the **Litos** theme. Deployed to **Netlify** (`netlify.toml`, Node 24).
 
 The directory name `hugo-portfolio` is historical — this is an Astro project, not Hugo.
 
