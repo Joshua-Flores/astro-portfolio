@@ -9,27 +9,22 @@ const posts = defineCollection({
     base: './src/content/posts',
   }),
   schema: ({ image }) =>
-    z
-      .object({
-        title: z.string(),
-        description: z.string(),
-        pubDate: z.date(),
-        tags: z.array(z.string()).optional(),
-        updatedDate: z.date().optional(),
-        author: z.string().default(POSTS_CONFIG.author),
-        cover: image().optional(),
-        ogImage: image().optional(),
-        recommend: z.boolean().default(false),
-        postType: z.custom<PostType>().optional(),
-        coverLayout: z.custom<CoverLayout>().optional(),
-        pinned: z.boolean().default(false),
-        draft: z.boolean().default(false),
-        license: z.string().optional(),
-      })
-      .transform((data) => ({
-        ...data,
-        ogImage: POSTS_CONFIG.ogImageUseCover && data.cover ? data.cover : data.ogImage,
-      })),
+    z.object({
+      title: z.string(),
+      description: z.string(),
+      pubDate: z.date(),
+      tags: z.array(z.string()).optional(),
+      updatedDate: z.date().optional(),
+      author: z.string().default(POSTS_CONFIG.author),
+      cover: image().optional(),
+      ogImage: image().optional(),
+      recommend: z.boolean().default(false),
+      postType: z.custom<PostType>().optional(),
+      coverLayout: z.custom<CoverLayout>().optional(),
+      pinned: z.boolean().default(false),
+      draft: z.boolean().default(false),
+      license: z.string().optional(),
+    }),
 })
 
 const projects = defineCollection({

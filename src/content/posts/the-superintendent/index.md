@@ -3,12 +3,12 @@ title: "The Superintendent"
 description: "A short story about ten software developers, a hospital in Middleburg Heights, Ohio, and the retired plant superintendent hired to figure out why every sprint is green and nothing works."
 pubDate: 2026-10-26
 tags: ["Fiction", "Short Story", "Claude", "Agile"]
-cover: ./poster.jpg
+cover: ./bill.jpg
 ---
 
 # The Superintendent
 
-![Bill leveling a framed TEAMWORK rowing poster on a brick office wall while developers watch from their desks](./poster.jpg)
+![Bill Kowalski, a former plant superintendent in a navy polo tucked into khakis](./bill.jpg)
 
 ## Introduction
 
@@ -56,10 +56,6 @@ Dan put the grain bowl down.
 
 Bill Kowalski had run the floor at Erie Precision Forge in Parma for nineteen years before the plant got sold to a holding company in Charlotte and the holding company decided it didn't need a plant. He'd started there at nineteen on a CNC lathe, moved to welding, made Line Foreman at twenty-eight and Plant Superintendent at thirty-nine. No formal degree, but had an honorary PhD from the school of experience.
 
-![Bill Kowalski, a former plant superintendent in a navy polo tucked into khakis](./bill.jpg)
-
-*Bill Kowalski*
-
 He managed two hundred and forty people on three shifts. Quotas, overtime, safety audits, union grievances, and the specific art of standing in the shipping bay at 5:40 a.m. figuring out why the trucks were late.
 
 He came to the interview in khakis, a navy polo tucked in tight under a braided belt, and a pair of Thorogood steel-toed boots that had been resoled twice. He knew first impressions were important so he cleaned and oiled them the night before. Priya liked the boots.
@@ -87,6 +83,8 @@ Priya didn't know exactly what that meant. She hired him anyway.
 On his first morning, Bill hung a poster.
 
 It was the kind you used to find in the back of a SkyMall catalog: a rowing crew at dawn, oars in perfect unison, mist on the water. Underneath, in serif capitals: **TEAMWORK. Ordinary people working together achieve extraordinary results.** He made the oak frame for it in his garage and had it on display in his office at Erie Precision for eleven years. He hung it on the brick wall by the team's pod with a level and two masonry anchors. Command strips would have been a shortcut and he knew the wall was load-bearing anyway.
+
+![Bill leveling a framed TEAMWORK rowing poster on a brick office wall while developers watch from their desks](./poster.jpg)
 
 The team sat at their desks with their coffees pretending to work while watching him out of the corner of their eyes. Bill leveled it against the brick while the team sat in the silence of people trying to work out whether it was a joke or not.
 
