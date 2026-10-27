@@ -6,7 +6,7 @@ import CoverTop from '~/components/posts/layouts/CoverTop.astro'
 import PostNavigation from '~/components/posts/base/PostNavigation.astro'
 import PostFeatures from '~/components/posts/toc/PostFeatures.astro'
 import TocMobile from '~/components/posts/toc/TocMobile.astro'
-import { POSTS_CONFIG, SITE } from '~/config'
+import { POSTS_CONFIG } from '~/config'
 import { render } from 'astro:content'
 import { getAllPosts } from '~/lib/data'
 import SectionDivider from '~/components/base/SectionDivider.astro'
@@ -27,6 +27,8 @@ export async function getStaticPaths() {
 
 const { post, posts, prev, next } = Astro.props
 const { data: frontmatter } = post
+// Resolved here rather than in the content schema so it isn't stuck in the content-layer cache
+const ogImage = POSTS_CONFIG.ogImageUseCover && frontmatter.cover ? frontmatter.cover : frontmatter.ogImage
 const { Content, headings, remarkPluginFrontmatter } = await render(post)
 
 const filterHeadings = headings.filter((heading: any) => heading.slug !== 'footnote-label')
@@ -44,11 +46,7 @@ const layoutKey: LayoutKey = (frontmatter.postType as LayoutKey) || (POSTS_CONFI
 const PostLayout = layoutMap[layoutKey]
 ---
 
-<Layout
-  title={frontmatter.title}
-  description={frontmatter.description || frontmatter.title}
-  image={frontmatter.ogImage?.src ? `${SITE.website}${frontmatter.ogImage.src}` : SITE.ogImage}
->
+<Layout title={frontmatter.title} description={frontmatter.description || frontmatter.title} image={ogImage?.src}>
   <div class="relative flex flex-col justify-between h-fit z-[1]">
     <TocMobile {post} {posts} headings={filterHeadings} />
     <PostLayout {frontmatter} minutesRead={remarkPluginFrontmatter.minutesRead} wordCount={remarkPluginFrontmatter.wordCount}>
