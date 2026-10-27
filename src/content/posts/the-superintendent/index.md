@@ -12,9 +12,9 @@ cover: ./bill.jpg
 
 ## Introduction
 
-Every team I've worked on has had some version of the all-green status report: sprint goal met, velocity stable, burndown healthy — and a customer who still can't do the one thing they bought the software to do. The ceremonies were running fine. Nobody had talked to the people using the thing.
+The happy place for developers is writing code. We get a ticket to work on and for the whole sprint we're laser focused on getting the task done. This is an easy trap to fall into if you're not fully in tune with who you are building the feature for and what value they expect to get from it.
 
-So I wanted a story about the outsider who notices. Not a consultant, not a process guru — a guy who ran a factory floor for nineteen years, doesn't know what a sprint is, and asks the one question nobody on the team can answer. Claude and I wrote it together, and the illustrations were generated with Nano Banana.
+So Claude and I wrote a story about an unsuspecting protagonist that ended up understanding UX design better than anyone on the team, and gets the job done the right way.
 
 ---
 
