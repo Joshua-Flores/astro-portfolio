@@ -14,7 +14,9 @@ cover: ./bill.jpg
 
 The happy place for developers is writing code. We get a ticket to work on and for the whole sprint we're laser focused on getting the task done. This is an easy trap to fall into if you're not fully in tune with who you are building the feature for and what value they expect to get from it.
 
-So Claude and I wrote a story about an unsuspecting protagonist that ended up understanding UX design better than anyone on the team, and gets the job done the right way.
+So I wrote a story about an unsuspecting protagonist who ends up understanding UX design better than anyone on the team, and gets the job done the right way.
+
+It was a true fifty-fifty collaboration with Claude. I wrote the backstory and a lot of the funny bits — especially everything about Bill, the main character — and Claude and I built out the rest of the story together. I also created the characters in Google Flow.
 
 ---
 
