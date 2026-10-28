@@ -16,7 +16,7 @@ The happy place for developers is writing code. We get a ticket to work on and f
 
 So I wrote a story about an unsuspecting protagonist who ends up understanding UX design better than anyone on the team, and gets the job done the right way.
 
-It was a true fifty-fifty collaboration with Claude. I wrote the backstory and a lot of the funny bits — especially everything about Bill, the main character — and Claude and I built out the rest of the story together. I also created the characters in Google Flow.
+It was a true fifty-fifty collaboration with Claude. I wrote the backstory and a lot of the funny bits — especially everything about Bill, the main character — and Claude and I built out the rest of the story together. Character design was created with Google Flow and Nano Banana, which allowed me to reuse characters across scenes.
 
 ---
 
